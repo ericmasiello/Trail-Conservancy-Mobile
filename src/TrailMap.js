@@ -35,8 +35,10 @@ module.exports = React.createClass({
       longitude: mapCoords[0].longitude,
       title: 'Title',
       subtitle: 'Subtitle',
+      image: require("./log.png"),
       detailCalloutView:(
-        <View style={{ alignItems: "center" }}>
+        <View style={styles.annotation}>
+          <Text>I found a log on the trail, bro.</Text>
           <Image
             source={require("./logo.png")}
             style={{height: 25, width: 25 }}
@@ -109,5 +111,9 @@ var styles = StyleSheet.create({
     margin: 10,
     borderWidth: 1,
     borderColor: '#000000',
+  },
+  annotation: {
+    flex: 1,
+    alignItems: 'center'
   }
 });
