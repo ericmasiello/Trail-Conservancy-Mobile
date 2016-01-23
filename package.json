@@ -6,6 +6,7 @@
     "start": "react-native start"
   },
   "dependencies": {
+    "firebase": "^2.4.0",
     "react-native": "0.18.0-rc",
     "x2js": "^2.0.0"
   }
