@@ -6,7 +6,8 @@
     "start": "react-native start"
   },
   "dependencies": {
-    "react-native": "0.18.0-rc",
+    "react-native": "^0.18.1",
+    "react-native-facebook-login": "^1.0.3",
     "x2js": "^2.0.0"
   }
 }

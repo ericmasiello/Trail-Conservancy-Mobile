@@ -1,12 +1,13 @@
 var React = require('react-native');
-var { View, StyleSheet, Text } = React;
+var { View, StyleSheet, Text, Navigator } = React;
+var Login = require('./Login');
 var TrailMap = require('./TrailMap');
 
 module.exports = React.createClass({
   render: function() {
     return (
       <View style={styles.container}>
-        <TrailMap />
+        <Login />       
       </View>
     );
   }
