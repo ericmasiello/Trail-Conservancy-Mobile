@@ -5,22 +5,35 @@
 'use strict';
 
 var React = require('react-native');
+var SplashPage = require('./src/SplashPage');
+var LoginPage = require('./src/LoginPage');
+var TrailMap = require('./src/TrailMap');
+
 var {
   AppRegistry,
   StyleSheet,
   Text,
   View,
+  Navigator,
 } = React;
 var App = require('./src/App');
 
 var TrailConservancy = React.createClass({
-  render: function() {
+   render: function() {
     return (
-      <View style={styles.container}>
-        <App />
-      </View>
+      <Navigator
+        initialRoute={{ name: 'SplashPage', component: SplashPage}}
+        configureScene={() => {
+          return Navigator.SceneConfigs.FloatFromRight;
+        }}
+        renderScene={(route, navigator) => {
+          if (route.component) {
+            return React.createElement(route.component, { navigator });
+          }
+        }}
+      />
     );
-  }
+  } 
 });
 
 var styles = StyleSheet.create({

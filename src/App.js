@@ -1,16 +1,14 @@
 var React = require('react-native');
 var { View, StyleSheet, Text, Navigator } = React;
-var Login = require('./Login');
+var SplashPage = require('./SplashPage');
+var LoginPage = require('./LoginPage');
 var TrailMap = require('./TrailMap');
 
 module.exports = React.createClass({
-  render: function() {
-    return (
-      <View style={styles.container}>
-        <Login />       
-      </View>
-    );
-  }
+
+ render: function() {
+    return ( "");
+  } 
 });
 
 var styles = StyleSheet.create({

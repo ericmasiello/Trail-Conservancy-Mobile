@@ -1,6 +1,6 @@
 var React = require('react-native');
 const Firebase = require('firebase');
-var { View, StyleSheet, MapView, MapRegionInput, Text, Image } = React;
+var { View, StyleSheet, MapView, MapRegionInput, Text, Image, Navigator } = React;
 var X2JS = require('x2js');
 var FairLandXML = require('../gpx/fairland');
 
@@ -15,15 +15,22 @@ module.exports = React.createClass({
   },
 
   componentWillMount: function() {
-    Firebase.enableLogging(true);
+    //Firebase.enableLogging(true);
     this.ref = new Firebase("https://shining-fire-7029.firebaseio.com/annotations");
     
     // seed fake annotation data.  This is working and you can see it in the data viewer at
     // https://shining-fire-7029.firebaseio.com/annotations/
     this.ref.push({ latitude: '42.086445', longitude: '-76.918551', title:'test1title', subtitle:'subtitle1test' });
+   
   },
-
   render() {
+    return (
+      <Navigator
+      renderScene={this.renderScene}
+      />
+    );
+  },
+  renderScene(route, navigator) {
 
     const x2js = new X2JS();
     const fairland = x2js.xml2js(FairLandXML);
@@ -68,6 +75,10 @@ module.exports = React.createClass({
 
     return (
       <View style={styles.container}>
+       <Image
+            source={require("./logo.png")}
+            style={{height: 25, width: 25 }}
+            />
         <MapView
           style={styles.map}
           region={{
