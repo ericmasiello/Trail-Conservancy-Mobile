@@ -3,15 +3,17 @@
 import React, {
   Component,
   View,
-  Text,
   StyleSheet,
   MapView,
   Image,
-  Navigator
+  Navigator,
+  Text
 } from 'react-native';
 import s from './trail.style';
 const styles = StyleSheet.create(s);
 
+import Menu from './menu.component';
+ 
 export default class TrailMap extends Component {
 
   componentWillMount() {
@@ -60,9 +62,11 @@ export default class TrailMap extends Component {
         </View>)
     }];
 
+
     return (
       <View style={styles.container}>
-        <MapView
+        <View style={styles.mapView}>
+      <MapView
           style={styles.map}
           region={{
             latitude: trails[0].latitude,
@@ -73,6 +77,10 @@ export default class TrailMap extends Component {
           overlays={[overlays]}
           annotations={annotations}
           />
+          </View>
+           <View style={styles.tabView}>
+				      <Menu/>
+           </View>
       </View>
     );
   };
