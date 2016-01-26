@@ -11,12 +11,17 @@ var {
 
 class SplashPage extends Component {
   componentWillMount() {
-    var navigator = this.props.navigator;
-    setTimeout(() => {
-      navigator.replace({
-        id: 'LoginPage',
-      });
-    }, 1000);
+    const { navigator } = this.props;
+
+    setTimeout(()=>{
+      navigator.immediatelyResetRouteStack([{name: 'login'}]);
+    }, 1500);
+
+    //setTimeout(() => {
+    //  navigator.replace({
+    //    id: 'LoginPage',
+    //  });
+    //}, 1000);
   }
   render() {
     return (

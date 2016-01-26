@@ -1,76 +1,72 @@
-var React = require('react-native');
-var { View, StyleSheet, Text, Image, Navigator } = React;
-var FBLogin = require('react-native-facebook-login');
-var FBLoginManager = require('NativeModules').FBLoginManager;
-var FB_PHOTO_WIDTH = 200;
+import React, { View, StyleSheet, Text, Image, Navigator } from 'react-native';
+import FBLogin from 'react-native-facebook-login';
+import { FBLoginManager } from 'NativeModules';
+
+/*
+ * FIXME: this should probably go into some app configuration object somewhere. This is fine for now.
+ */
+const FB_PHOTO_WIDTH = 200;
 
 module.exports = React.createClass({
 
   getInitialState() {
     return {
-      user: null,
+      user: null
     };
   },
+  onLogin( data ) {
+    console.log("Logged in!");
+    console.log(data);
+    this.setState({ user: data.credentials });
+    this.gotoNext();
+  },
+
+  onLogout(){
+    console.log("Logged out.");
+    this.setState({ user : null });
+  },
+
+  onLoginNotFound(){
+    console.log("No user logged in.");
+    this.setState({ user : null });
+  },
+
+  onError(data){
+    console.log("ERROR");
+    console.log(data);
+  },
+  onCancel(){
+    console.log("User cancelled.");
+  },
+  onPermissionsMissing(data){
+    console.log("Check permissions!");
+    console.log(data);
+  },
+
+
   render() {
-    console.log("render login");
-return (
+    const { user } = this.state;
 
-      <Navigator
-        configureScene={() => {
-          return Navigator.SceneConfigs.FloatFromRight;
-        }}
-        renderScene={(route, navigator) => {
-
-        var _this = this;
-        var user = this.state.user;
-        return (
-          <View style={styles.container}>
-
-            { user && <Photo user={user} /> }
-            { user && <Info user={user} /> }         
-
-            <FBLogin style={{ marginBottom: 10, }}
-              permissions={["email","user_friends"]}
-              onLogin={function(data){
-                console.log("Logged in!");
-                console.log(data);
-                _this.setState({ user : data.credentials });         
-              }}
-              onLogout={function(){
-                console.log("Logged out.");
-                _this.setState({ user : null });
-              }}
-              onLoginFound={this.gotoNext}
-              onLoginNotFound={function(){
-                console.log("No user logged in.");
-                _this.setState({ user : null });
-              }}
-              onError={function(data){
-                console.log("ERROR");
-                console.log(data);
-              }}
-              onCancel={function(){
-                console.log("User cancelled.");
-              }}
-              onPermissionsMissing={function(data){
-                console.log("Check permissions!");
-                console.log(data);
-              }}
-            />
-            <Text>{ user ? user.token : "N/A" }</Text>
-          </View>
-        );
-        }}
-      />
+    return (
+      <View style={styles.container}>
+        <FBLogin style={{ marginBottom: 10 }}
+                 permissions={["email","user_friends"]}
+                 onLogin={ this.onLogin }
+                 onLogout={ this.onLogout }
+                 onLoginFound={this.gotoNext}
+                 onLoginNotFound={ this.onLoginNotFound }
+                 onError={ this.onError }
+                 onCancel={ this.onCancel }
+                 onPermissionsMissing={ this.onPermissionsMissing }
+          />
+        <Text>{ user ? user.token : "N/A" }</Text>
+      </View>
     );
  
   },
   gotoNext() {
     console.log('go to next');
-    this.props.navigator.push({
-      id: 'TrailMap',
-      name: 'Trail Map',
-    });
+    this.props.navigator.push({name: 'trailmap'});
   },
   _getAnnotations(region) {
     return [{
@@ -125,22 +121,21 @@ var Photo = React.createClass({
   },
 
   componentWillMount: function(){
-    var _this = this;
     var user = this.props.user;
     var api = `https://graph.facebook.com/v2.3/${user.userId}/picture?width=${FB_PHOTO_WIDTH}&redirect=false&access_token=${user.token}`;
+    var self = this;
 
     fetch(api)
       .then((response) => response.json())
       .then((responseData) => {
-        _this.setState({
+        self.setState({
           photo : {
             url : responseData.data.url,
             height: responseData.data.height,
             width: responseData.data.width,
-          },
+          }
         });
-      })
-      .done();
+      }).done();
   },
 
   render: function(){
