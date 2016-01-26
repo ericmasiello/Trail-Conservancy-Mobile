@@ -1,15 +1,16 @@
 'use strict';
 
-const React = require('react-native');
+import React from 'react-native';
+ 
 const {
   Component,
   StyleSheet,
   Navigator
 } = React;
 
-const SplashPage = require('./SplashPage');
-const LoginPage = require('./LoginPage');
-const TrailMap = require('./TrailMap');
+import SplashPage from './SplashPage';
+import LoginPage from './LoginPage';
+import TrailMap from './TrailMap';
 
 const ROUTES = {
   splash: SplashPage,
@@ -20,7 +21,6 @@ const ROUTES = {
 class Main extends Component {
 
   constructor(props) {
-
       super(props);
   }
 

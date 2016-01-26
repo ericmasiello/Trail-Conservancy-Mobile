@@ -1,13 +1,14 @@
 'use strict';
 
-const React = require('react-native');
+import React from 'react-native';
+
 const {
   Component,
   View,
   StyleSheet,
 } = React;
-
-const FBLogin = require('react-native-facebook-login');
+ 
+import FBLogin from 'react-native-facebook-login';
 
 class LoginPage extends Component {
 

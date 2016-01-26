@@ -1,6 +1,7 @@
 'use strict';
 
-const React = require('react-native');
+import React from 'react-native';
+
 const {
   Component,
   View,
@@ -10,12 +11,11 @@ const {
   Navigator
 } = React;
 
-const Firebase = require('firebase');
-const X2JS = require('x2js');
-const FairLandXML = require('../gpx/fairland');
+import Firebase from 'firebase';
+import X2JS from 'x2js';
+import FairLandXML from '../gpx/fairland';
 
 class TrailMap extends Component {
-
 
   constructor(props) {
 
@@ -39,7 +39,6 @@ class TrailMap extends Component {
     console.log('hi');
     console.log(this.renderScene);   
     return (
-
       <Navigator
       renderScene={this.renderScene}
       />
