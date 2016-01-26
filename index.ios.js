@@ -1,7 +1,10 @@
+'use strict';
+
 import React from 'react-native';
-var {
+
+const {
   AppRegistry
   } = React;
-var Main = require('./src/main');
+const Main = require('./src/main');
 
 AppRegistry.registerComponent('TrailConservancy', () => Main);

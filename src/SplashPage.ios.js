@@ -25,4 +25,4 @@ class SplashPage extends Component {
   }
 }
 
-module.exports = SplashPage;
+export default SplashPage;

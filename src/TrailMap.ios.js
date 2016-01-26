@@ -120,4 +120,5 @@ const styles = StyleSheet.create({
   }
 });
 
-module.exports = TrailMap;
+export default TrailMap;
+//module.exports = TrailMap;

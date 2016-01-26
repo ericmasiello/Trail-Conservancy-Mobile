@@ -7,7 +7,7 @@ const {
   View,
   StyleSheet,
 } = React;
- 
+
 import FBLogin from 'react-native-facebook-login';
 
 class LoginPage extends Component {
@@ -23,7 +23,6 @@ class LoginPage extends Component {
 
   onLogin = (data) =>  {
     console.log('Logged in!');
-    console.log(data);
     this.setState({ user: data.credentials });
     this.gotoNext();
   };
@@ -89,6 +88,4 @@ const styles = StyleSheet.create({
   }
 });
 
-module.exports = LoginPage;
-
-//export default LoginPage;
+export default LoginPage;
