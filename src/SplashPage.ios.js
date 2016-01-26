@@ -1,12 +1,10 @@
 'use strict';
 
-var React = require('react-native');
-var {
+const React = require('react-native');
+const {
   Component,
   View,
-  Text,
-  Navigator,
-  TouchableOpacity
+  Text
 } = React;
 
 class SplashPage extends Component {
@@ -16,12 +14,6 @@ class SplashPage extends Component {
     setTimeout(()=>{
       navigator.immediatelyResetRouteStack([{name: 'login'}]);
     }, 1500);
-
-    //setTimeout(() => {
-    //  navigator.replace({
-    //    id: 'LoginPage',
-    //  });
-    //}, 1000);
   }
   render() {
     return (

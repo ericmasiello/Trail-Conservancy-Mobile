@@ -1,44 +1,60 @@
-var React = require('react-native');
+'use strict';
+
+const React = require('react-native');
+const {
+  Component,
+  View,
+  StyleSheet,
+  MapView,
+  Image,
+  Navigator
+} = React;
+
 const Firebase = require('firebase');
-var { View, StyleSheet, MapView, MapRegionInput, Text, Image, Navigator } = React;
-var X2JS = require('x2js');
-var FairLandXML = require('../gpx/fairland');
+const X2JS = require('x2js');
+const FairLandXML = require('../gpx/fairland');
 
-module.exports = React.createClass({
+class TrailMap extends Component {
 
-  getInitialState() {
-    return {
-      isFirstLoad: true,
-      mapRegion: undefined,
-      annotations: [],
-    };
-  },
 
-  componentWillMount: function() {
+  constructor(props) {
+
+      super(props);
+
+      this.state = {
+        isFirstLoad: true,
+        mapRegion: undefined,
+        annotations: []
+      };
+
+  }
+
+  componentWillMount() {
     //Firebase.enableLogging(true);
-    this.ref = new Firebase("https://shining-fire-7029.firebaseio.com/annotations");
-    
-    // seed fake annotation data.  This is working and you can see it in the data viewer at
-    // https://shining-fire-7029.firebaseio.com/annotations/
+    this.ref = new Firebase('https://shining-fire-7029.firebaseio.com/annotations');
     this.ref.push({ latitude: '42.086445', longitude: '-76.918551', title:'test1title', subtitle:'subtitle1test' });
-   
-  },
+  }
+
   render() {
+    console.log('hi');
+    console.log(this.renderScene);   
     return (
+
       <Navigator
       renderScene={this.renderScene}
       />
     );
-  },
-  renderScene(route, navigator) {
 
+  }
+
+  renderScene = (route, navigator) => {
     const x2js = new X2JS();
     const fairland = x2js.xml2js(FairLandXML);
     const mapCoords = fairland.gpx.trk[0].trkseg.trkpt.map((o)=> {
       return {
         latitude: parseFloat(o._lat),
         longitude: parseFloat(o._lon)
-      }
+      };
     });
 
     const overlays = {
@@ -53,30 +69,18 @@ module.exports = React.createClass({
       title: 'Title',
       subtitle: 'Subtitle',
       detailCalloutView:(
-        <View style={{ alignItems: "center" }}>
+        <View style={{ alignItems: 'center' }}>
           <Image
-            source={require("./logo.png")}
+            source={require('./logo.png')}
             style={{height: 25, width: 25 }}
             />
         </View>)
     }];
 
-    //view: <View style={{
-    //      alignItems: 'center',
-    //    }}>
-    //  <Text style={{fontWeight: 'bold', color: '#f007'}}>
-    //    Thumbs Up!
-    //  </Text>
-    //  <Image
-    //    style={{width: 90, height: 65, resizeMode: 'cover'}}
-    //    source={{uri: 'http://facebook.github.io/react/img/logo_og.png'}}
-    //    />
-    //</View>
-
     return (
       <View style={styles.container}>
        <Image
-            source={require("./logo.png")}
+            source={require('./logo.png')}
             style={{height: 25, width: 25 }}
             />
         <MapView
@@ -92,34 +96,18 @@ module.exports = React.createClass({
           />
       </View>
     );
-  },
+  };
 
-  _getAnnotations(region) {
+getAnnotations = (region) =>   {
     return [{
       longitude: region.longitude,
       latitude: region.latitude,
       title: 'You Are Here',
     }];
-  },
+  };
+}
 
-  _onRegionChange(region) {
-    this.setState({
-      mapRegionInput: region,
-    });
-  },
-
-  _onRegionChangeComplete(region) {
-    if (this.state.isFirstLoad) {
-      this.setState({
-        mapRegionInput: region,
-        annotations: this._getAnnotations(region),
-        isFirstLoad: false,
-      });
-    }
-  }
-});
-
-var styles = StyleSheet.create({
+const styles = StyleSheet.create({
   container: {
     borderWidth: 1,
     borderColor: '#000000'
@@ -132,3 +120,5 @@ var styles = StyleSheet.create({
     borderColor: '#000000',
   }
 });
+
+module.exports = TrailMap;
