@@ -35,9 +35,7 @@ class TrailMap extends Component {
     this.ref.push({ latitude: '42.086445', longitude: '-76.918551', title:'test1title', subtitle:'subtitle1test' });
   }
 
-  render() {
-    console.log('hi');
-    console.log(this.renderScene);   
+  render() { 
     return (
       <Navigator
       renderScene={this.renderScene}
@@ -121,4 +119,3 @@ const styles = StyleSheet.create({
 });
 
 export default TrailMap;
-//module.exports = TrailMap;
