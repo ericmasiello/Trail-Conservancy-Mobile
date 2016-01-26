@@ -9,7 +9,7 @@ var {
   AppRegistry,
   StyleSheet,
   Text,
-  View,
+  View 
 } = React;
 
 var TrailConservancy = React.createClass({
