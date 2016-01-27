@@ -21,6 +21,8 @@
 		13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB51A68108700A75B9A /* Images.xcassets */; };
 		13B07FC11A68108700A75B9A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB71A68108700A75B9A /* main.m */; };
 		146834051AC3E58100842450 /* libReact.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 146834041AC3E56700842450 /* libReact.a */; };
+		677D56821C5863D700E3D7F1 /* TrailConservancyUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 677D56811C5863D700E3D7F1 /* TrailConservancyUITests.swift */; };
+		677D568A1C58644500E3D7F1 /* SnapshotHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 677D56891C58644500E3D7F1 /* SnapshotHelper.swift */; };
 		678937811C55676300A5D410 /* libRCTFBLogin.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 678937771C55669B00A5D410 /* libRCTFBLogin.a */; };
 		678937851C556C5D00A5D410 /* FBSDKCoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 678937821C556C5D00A5D410 /* FBSDKCoreKit.framework */; };
 		678937861C556C5D00A5D410 /* FBSDKLoginKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 678937831C556C5D00A5D410 /* FBSDKLoginKit.framework */; };
@@ -92,6 +94,13 @@
 			remoteGlobalIDString = 83CBBA2E1A601D0E00E9B192;
 			remoteInfo = React;
 		};
+		677D56841C5863D700E3D7F1 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 83CBB9F71A601CBA00E9B192 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 13B07F861A680F5B00A75B9A;
+			remoteInfo = TrailConservancy;
+		};
 		678937761C55669B00A5D410 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 678937711C55669B00A5D410 /* RCTFBLogin.xcodeproj */;
@@ -135,10 +144,15 @@
 		13B07FB61A68108700A75B9A /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = TrailConservancy/Info.plist; sourceTree = "<group>"; };
 		13B07FB71A68108700A75B9A /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = main.m; path = TrailConservancy/main.m; sourceTree = "<group>"; };
 		146833FF1AC3E56700842450 /* React.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = React.xcodeproj; path = "../node_modules/react-native/React/React.xcodeproj"; sourceTree = "<group>"; };
+		677D567F1C5863D700E3D7F1 /* TrailConservancyUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TrailConservancyUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		677D56811C5863D700E3D7F1 /* TrailConservancyUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrailConservancyUITests.swift; sourceTree = "<group>"; };
+		677D56831C5863D700E3D7F1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		677D56891C58644500E3D7F1 /* SnapshotHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SnapshotHelper.swift; sourceTree = "<group>"; };
 		678937711C55669B00A5D410 /* RCTFBLogin.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTFBLogin.xcodeproj; path = "../node_modules/react-native-facebook-login/RCTFBLogin.xcodeproj"; sourceTree = "<group>"; };
 		678937821C556C5D00A5D410 /* FBSDKCoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FBSDKCoreKit.framework; sourceTree = "<group>"; };
 		678937831C556C5D00A5D410 /* FBSDKLoginKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FBSDKLoginKit.framework; sourceTree = "<group>"; };
 		678937841C556C5D00A5D410 /* FBSDKShareKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FBSDKShareKit.framework; sourceTree = "<group>"; };
+		678A4ED11C585E3700EB0F53 /* TrailConservancy-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "TrailConservancy-Bridging-Header.h"; sourceTree = "<group>"; };
 		78C398B01ACF4ADC00677621 /* RCTLinking.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTLinking.xcodeproj; path = "../node_modules/react-native/Libraries/LinkingIOS/RCTLinking.xcodeproj"; sourceTree = "<group>"; };
 		832341B01AAA6A8300B99B32 /* RCTText.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTText.xcodeproj; path = "../node_modules/react-native/Libraries/Text/RCTText.xcodeproj"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -169,6 +183,13 @@
 				832341BD1AAA6AB300B99B32 /* libRCTText.a in Frameworks */,
 				00C302EA1ABCBA2D00DB3ED1 /* libRCTVibration.a in Frameworks */,
 				139FDEF61B0652A700C62182 /* libRCTWebSocket.a in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		677D567C1C5863D700E3D7F1 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -258,6 +279,7 @@
 				13B07FB61A68108700A75B9A /* Info.plist */,
 				13B07FB11A68108700A75B9A /* LaunchScreen.xib */,
 				13B07FB71A68108700A75B9A /* main.m */,
+				678A4ED11C585E3700EB0F53 /* TrailConservancy-Bridging-Header.h */,
 			);
 			name = TrailConservancy;
 			sourceTree = "<group>";
@@ -268,6 +290,16 @@
 				146834041AC3E56700842450 /* libReact.a */,
 			);
 			name = Products;
+			sourceTree = "<group>";
+		};
+		677D56801C5863D700E3D7F1 /* TrailConservancyUITests */ = {
+			isa = PBXGroup;
+			children = (
+				677D56891C58644500E3D7F1 /* SnapshotHelper.swift */,
+				677D56811C5863D700E3D7F1 /* TrailConservancyUITests.swift */,
+				677D56831C5863D700E3D7F1 /* Info.plist */,
+			);
+			path = TrailConservancyUITests;
 			sourceTree = "<group>";
 		};
 		678937721C55669B00A5D410 /* Products */ = {
@@ -318,6 +350,7 @@
 				13B07FAE1A68108700A75B9A /* TrailConservancy */,
 				832341AE1AAA6A7D00B99B32 /* Libraries */,
 				00E356EF1AD99517003FC87E /* TrailConservancyTests */,
+				677D56801C5863D700E3D7F1 /* TrailConservancyUITests */,
 				83CBBA001A601CBA00E9B192 /* Products */,
 				678937821C556C5D00A5D410 /* FBSDKCoreKit.framework */,
 				678937831C556C5D00A5D410 /* FBSDKLoginKit.framework */,
@@ -332,6 +365,7 @@
 			children = (
 				13B07F961A680F5B00A75B9A /* TrailConservancy.app */,
 				00E356EE1AD99517003FC87E /* TrailConservancyTests.xctest */,
+				677D567F1C5863D700E3D7F1 /* TrailConservancyUITests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -375,17 +409,40 @@
 			productReference = 13B07F961A680F5B00A75B9A /* TrailConservancy.app */;
 			productType = "com.apple.product-type.application";
 		};
+		677D567E1C5863D700E3D7F1 /* TrailConservancyUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 677D56861C5863D700E3D7F1 /* Build configuration list for PBXNativeTarget "TrailConservancyUITests" */;
+			buildPhases = (
+				677D567B1C5863D700E3D7F1 /* Sources */,
+				677D567C1C5863D700E3D7F1 /* Frameworks */,
+				677D567D1C5863D700E3D7F1 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				677D56851C5863D700E3D7F1 /* PBXTargetDependency */,
+			);
+			name = TrailConservancyUITests;
+			productName = TrailConservancyUITests;
+			productReference = 677D567F1C5863D700E3D7F1 /* TrailConservancyUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
 		83CBB9F71A601CBA00E9B192 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0610;
+				LastSwiftUpdateCheck = 0720;
+				LastUpgradeCheck = 0720;
 				ORGANIZATIONNAME = Facebook;
 				TargetAttributes = {
 					00E356ED1AD99517003FC87E = {
 						CreatedOnToolsVersion = 6.2;
+						TestTargetID = 13B07F861A680F5B00A75B9A;
+					};
+					677D567E1C5863D700E3D7F1 = {
+						CreatedOnToolsVersion = 7.2;
 						TestTargetID = 13B07F861A680F5B00A75B9A;
 					};
 				};
@@ -451,6 +508,7 @@
 			targets = (
 				13B07F861A680F5B00A75B9A /* TrailConservancy */,
 				00E356ED1AD99517003FC87E /* TrailConservancyTests */,
+				677D567E1C5863D700E3D7F1 /* TrailConservancyUITests */,
 			);
 		};
 /* End PBXProject section */
@@ -552,6 +610,13 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		677D567D1C5863D700E3D7F1 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
@@ -589,6 +654,15 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		677D567B1C5863D700E3D7F1 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				677D56821C5863D700E3D7F1 /* TrailConservancyUITests.swift in Sources */,
+				677D568A1C58644500E3D7F1 /* SnapshotHelper.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
@@ -596,6 +670,11 @@
 			isa = PBXTargetDependency;
 			target = 13B07F861A680F5B00A75B9A /* TrailConservancy */;
 			targetProxy = 00E356F41AD99517003FC87E /* PBXContainerItemProxy */;
+		};
+		677D56851C5863D700E3D7F1 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 13B07F861A680F5B00A75B9A /* TrailConservancy */;
+			targetProxy = 677D56841C5863D700E3D7F1 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -627,6 +706,7 @@
 				INFOPLIST_FILE = TrailConservancyTests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.2;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.reactjs.native.example.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/TrailConservancy.app/TrailConservancy";
 			};
@@ -644,6 +724,7 @@
 				INFOPLIST_FILE = TrailConservancyTests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.2;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.reactjs.native.example.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/TrailConservancy.app/TrailConservancy";
 			};
@@ -652,8 +733,10 @@
 		13B07F941A680F5B00A75B9A /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
+				CURRENT_PROJECT_VERSION = 6;
 				DEAD_CODE_STRIPPING = NO;
+				EMBED_ASSET_PACKS_IN_PRODUCT_BUNDLE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
@@ -669,13 +752,19 @@
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_BUNDLE_IDENTIFIER = org.trailconservancy.trailreport;
 				PRODUCT_NAME = TrailConservancy;
+				PROVISIONING_PROFILE = "f9cfe044-a55c-423f-ad71-9603c716ac07";
+				SWIFT_OBJC_BRIDGING_HEADER = "TrailConservancy-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				VERSIONING_SYSTEM = "apple-generic";
 			};
 			name = Debug;
 		};
 		13B07F951A680F5B00A75B9A /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
+				CURRENT_PROJECT_VERSION = 6;
+				EMBED_ASSET_PACKS_IN_PRODUCT_BUNDLE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
@@ -691,6 +780,44 @@
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_BUNDLE_IDENTIFIER = org.trailconservancy.trailreport;
 				PRODUCT_NAME = TrailConservancy;
+				PROVISIONING_PROFILE = "f9cfe044-a55c-423f-ad71-9603c716ac07";
+				SWIFT_OBJC_BRIDGING_HEADER = "TrailConservancy-Bridging-Header.h";
+				VERSIONING_SYSTEM = "apple-generic";
+			};
+			name = Release;
+		};
+		677D56871C5863D700E3D7F1 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_TESTABILITY = YES;
+				GCC_NO_COMMON_BLOCKS = YES;
+				INFOPLIST_FILE = TrailConservancyUITests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.cmann.TrailConservancyUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "f9cfe044-a55c-423f-ad71-9603c716ac07";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				TEST_TARGET_NAME = TrailConservancy;
+				USES_XCTRUNNER = YES;
+			};
+			name = Debug;
+		};
+		677D56881C5863D700E3D7F1 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				GCC_NO_COMMON_BLOCKS = YES;
+				INFOPLIST_FILE = TrailConservancyUITests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.cmann.TrailConservancyUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "f9cfe044-a55c-423f-ad71-9603c716ac07";
+				TEST_TARGET_NAME = TrailConservancy;
+				USES_XCTRUNNER = YES;
 			};
 			name = Release;
 		};
@@ -714,6 +841,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_OPTIMIZATION_LEVEL = 0;
@@ -797,6 +925,15 @@
 			buildConfigurations = (
 				13B07F941A680F5B00A75B9A /* Debug */,
 				13B07F951A680F5B00A75B9A /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		677D56861C5863D700E3D7F1 /* Build configuration list for PBXNativeTarget "TrailConservancyUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				677D56871C5863D700E3D7F1 /* Debug */,
+				677D56881C5863D700E3D7F1 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

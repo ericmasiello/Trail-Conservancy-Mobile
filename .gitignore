@@ -32,3 +32,15 @@ local.properties
 #
 node_modules/
 npm-debug.log
+
+
+# Fastlane deployment tool
+##
+fastlane/screenshots
+*.zip
+*.mobileprovision
+*.cer
+*.certSigningRequest
+*.p12
+fastlane/report.xml
+ios/main.jsbundle

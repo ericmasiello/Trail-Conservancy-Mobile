@@ -3,7 +3,8 @@
   "version": "0.0.1",
   "private": true,
   "scripts": {
-    "start": "react-native start"
+    "start": "react-native start",
+    "deploy": "react-native bundle && fastlane beta"
   },
   "dependencies": {
     "firebase": "^2.4.0",
