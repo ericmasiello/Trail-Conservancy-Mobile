@@ -1,22 +1,30 @@
-var React = require('react-native');
-var { View, StyleSheet, Text } = React;
-var TrailMap = require('./TrailMap');
+/**
+ * Sample React Native App
+ * https://github.com/facebook/react-native
+ */
+'use strict';
 
-module.exports = React.createClass({
-  render: function() {
-    return (
+import React, {
+  AppRegistry,
+  StyleSheet,
+  Text,
+  View,
+} from 'react-native';
+import { createStore, applyMiddleware } from 'redux';
+import { Provider } from 'react-redux';
+import reducers from './reducers';
+import Dummy from './components/dummy.component';
+import styleRules from './app.styles';
+
+const store = applyMiddleware()(createStore)(reducers);
+const styles = StyleSheet.create(styleRules);
+
+export default () => {
+  return (
+    <Provider store={store}>
       <View style={styles.container}>
-        <TrailMap />
+        <Dummy />
       </View>
-    );
-  }
-});
-
-var styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: '#F5FCFF',
-  }
-});
+    </Provider>
+  );
+};
