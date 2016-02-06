@@ -1,40 +1,29 @@
 'use strict';
 
-import React from 'react-native';
-
-const {
+import React, {
   Component,
   View,
   StyleSheet,
-} = React;
-
+} from 'react-native';
 import FBLogin from 'react-native-facebook-login';
 
-class LoginPage extends Component {
+export default class LoginPage extends Component {
 
-   constructor(props) {
-    super(props);
-
-    this.state = {
-      user: null
-    };
-
-   }
-
-  onLogin = (data) =>  {
+  onLogin = (data) => {
     console.log('Logged in!');
-    this.setState({ user: data.credentials });
+
+    this.props.loginActionCreator(data.credentials);
     this.gotoNext();
   };
 
   onLogout = () => {
     console.log('Logged out.');
-    this.setState({ user : null });
+    this.props.logoutActionCreator();
   };
 
   onLoginNotFound = () => {
     console.log('No user logged in.');
-    this.setState({ user : null });
+    this.props.logoutActionCreator();
   };
 
   onError = (data) => {
@@ -51,6 +40,10 @@ class LoginPage extends Component {
     console.log(data);
   };
 
+  gotoNext = () => {
+    this.props.navigator.push({name: 'trailmap'});
+  };
+
   render() {
     return (
       <View style={styles.container}>
@@ -63,15 +56,10 @@ class LoginPage extends Component {
                  onError={ this.onError }
                  onCancel={ this.onCancel }
                  onPermissionsMissing={ this.onPermissionsMissing }
-        />
+          />
       </View>
     );
   }
-
-  gotoNext = () =>  {
-     this.props.navigator.push({name: 'trailmap'});
-  };
-
 }
 
 const styles = StyleSheet.create({
@@ -87,5 +75,3 @@ const styles = StyleSheet.create({
     borderColor: '#000000',
   }
 });
-
-export default LoginPage;

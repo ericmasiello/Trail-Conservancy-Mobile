@@ -8,11 +8,12 @@ import React, {
 import { Provider } from 'react-redux/native';
 import { createStore, applyMiddleware } from 'redux';
 
+import reducers from './reducers/';
 import SplashPage from './SplashPage';
-import LoginPage from './LoginPage';
+import LoginPage from './containers/login.container';
 import TrailMap from './TrailMap';
 
-
+const store = applyMiddleware()(createStore)(reducers);
 
 const ROUTES = {
   splash: SplashPage,
@@ -23,26 +24,27 @@ const ROUTES = {
 export default class Main extends Component {
 
   constructor(props) {
-      super(props);
+    super(props);
   }
 
   renderScene(route, navigator) {
     console.log('Route to ' + route.name);
-      var Component = ROUTES[route.name]; //ROUTES['signin'] => Signin
-      return <Component route={route} navigator={navigator} />;
+    var Component = ROUTES[route.name]; //ROUTES['signin'] => Signin
+    return <Component route={route} navigator={navigator}/>;
   }
 
-  render(){
-
-      return (
-        <Navigator
+  render() {
+    return (
+      <Provider store={store}>
+        {() => <Navigator
           style={styles.container}
           initialRoute={{name: 'splash'}}
           renderScene={this.renderScene}
           configureScene={()=> { return Navigator.SceneConfigs.FloatFromRight; }}
-          />
-      );
-    }
+          />}
+      </Provider>
+    );
+  }
 }
 
 const styles = StyleSheet.create({
