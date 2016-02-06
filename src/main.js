@@ -1,16 +1,18 @@
 'use strict';
 
-import React from 'react-native';
- 
-const {
+import React, {
   Component,
   StyleSheet,
   Navigator
-} = React;
+} from 'react-native';
+import { Provider } from 'react-redux/native';
+import { createStore, applyMiddleware } from 'redux';
 
 import SplashPage from './SplashPage';
 import LoginPage from './LoginPage';
 import TrailMap from './TrailMap';
+
+
 
 const ROUTES = {
   splash: SplashPage,
@@ -18,7 +20,7 @@ const ROUTES = {
   trailmap: TrailMap
 };
 
-class Main extends Component {
+export default class Main extends Component {
 
   constructor(props) {
       super(props);
@@ -48,5 +50,3 @@ const styles = StyleSheet.create({
     flex: 1
   }
 });
-
-module.exports = Main;
