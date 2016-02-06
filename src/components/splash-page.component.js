@@ -1,14 +1,12 @@
 'use strict';
 
-import React from 'react-native';
-
-const {
+import React, {
   Component,
   View,
   Text
-} = React;
+} from 'react-native';
 
-class SplashPage extends Component {
+export default class SplashPage extends Component {
   componentWillMount() {
     const { navigator } = this.props;
 
@@ -19,10 +17,8 @@ class SplashPage extends Component {
   render() {
     return (
       <View style={{flex: 1, backgroundColor: '#246dd5', alignItems: 'center', justifyContent: 'center'}}>
-        <Text style={{color: 'white', fontSize: 32,}}>Trail Con Splash Page</Text>
+        <Text style={{color: 'white', fontSize: 32,}}>Trail Con Splash Page!</Text>
       </View>
     );
   }
 }
-
-export default SplashPage;
