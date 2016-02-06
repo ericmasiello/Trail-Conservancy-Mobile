@@ -6,52 +6,67 @@ import React, {
   StyleSheet,
 } from 'react-native';
 import FBLogin from 'react-native-facebook-login';
+import s from './login.style';
+const styles = StyleSheet.create(s);
 
 export default class LoginPage extends Component {
 
-  onLogin = (data) => {
-    console.log('Logged in!');
+  constructor(props){
+    super(props);
+    this.onLogin = this.onLogin.bind(this);
+    this.onLogout = this.onLogout.bind(this);
+    this.onLoginNotFound = this.onLoginNotFound.bind(this);
+    this.onLoginFound = this.onLoginFound.bind(this);
+    this.gotoNext = this.gotoNext.bind(this);
+  }
 
+
+  onLogin(data){
+    console.log('LoginPage: logged in');
     this.props.loginActionCreator(data.credentials);
     this.gotoNext();
-  };
+  }
 
-  onLogout = () => {
-    console.log('Logged out.');
+  onLogout(){
+    console.log('LoginPage: logged out');
     this.props.logoutActionCreator();
-  };
+  }
 
-  onLoginNotFound = () => {
-    console.log('No user logged in.');
+  onLoginFound(data){
+    console.log("LoginPage: existing login found.");
+    this.props.loginActionCreator(data.credentials);
+    this.gotoNext();
+  }
+
+  onLoginNotFound(){
+    console.log('LoginPage: login not found');
     this.props.logoutActionCreator();
-  };
+  }
 
-  onError = (data) => {
-    console.log('ERROR');
-    console.log(data);
-  };
+  onError(data){
+    console.log('LoginPage: error', data);
+  }
 
-  onCancel = () => {
-    console.log('User cancelled.');
-  };
+  onCancel(){
+    console.log('LoginPage: cancel');
+  }
 
-  onPermissionsMissing = (data) => {
-    console.log('Check permissions!');
-    console.log(data);
-  };
+  onPermissionsMissing(data){
+    console.log('LoginPage: permissions missing', data);
+  }
 
-  gotoNext = () => {
+  gotoNext(){
     this.props.navigator.push({name: 'trailmap'});
-  };
+  }
 
   render() {
     return (
       <View style={styles.container}>
-        <FBLogin style={{ marginBottom: 10 }}
+        <FBLogin style={styles.fbLogin}
                  permissions={['email','user_friends']}
                  onLogin={ this.onLogin }
                  onLogout={ this.onLogout }
-                 onLoginFound={this.gotoNext}
+                 onLoginFound={this.onLoginFound }
                  onLoginNotFound={ this.onLoginNotFound }
                  onError={ this.onError }
                  onCancel={ this.onCancel }
@@ -61,17 +76,3 @@ export default class LoginPage extends Component {
     );
   }
 }
-
-const styles = StyleSheet.create({
-  container: {
-    borderWidth: 1,
-    borderColor: '#000000'
-  },
-  map: {
-    height: 500,
-    width: 300,
-    margin: 10,
-    borderWidth: 1,
-    borderColor: '#000000',
-  }
-});
