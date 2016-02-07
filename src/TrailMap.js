@@ -1,4 +1,5 @@
 var React = require('react-native');
+const Firebase = require('firebase');
 var { View, StyleSheet, MapView, MapRegionInput, Text, Image } = React;
 var X2JS = require('x2js');
 var FairLandXML = require('../gpx/fairland');
@@ -11,6 +12,15 @@ module.exports = React.createClass({
       mapRegion: undefined,
       annotations: [],
     };
+  },
+
+  componentWillMount: function() {
+    Firebase.enableLogging(true);
+    this.ref = new Firebase("https://shining-fire-7029.firebaseio.com/annotations");
+    
+    // seed fake annotation data.  This is working and you can see it in the data viewer at
+    // https://shining-fire-7029.firebaseio.com/annotations/
+    this.ref.push({ latitude: '42.086445', longitude: '-76.918551', title:'test1title', subtitle:'subtitle1test' });
   },
 
   render() {

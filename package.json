@@ -6,8 +6,10 @@
     "start": "react-native start"
   },
   "dependencies": {
+    "firebase": "^2.4.0",
     "react-native": "0.18.0-rc",
     "react-native-camera": "^0.3.8",
-    "x2js": "^2.0.0"
+    "x2js": "^2.0.0",
+    "xmldom": "^0.1.21"
   }
 }
