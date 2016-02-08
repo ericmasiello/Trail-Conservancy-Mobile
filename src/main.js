@@ -11,7 +11,7 @@ import { createStore, applyMiddleware } from 'redux';
 import reducers from './reducers/';
 import SplashPage from './components/splash-page.component';
 import LoginPage from './containers/login.container';
-import TrailMap from './TrailMap';
+import TrailMap from './components/trail.component';
 
 const store = applyMiddleware()(createStore)(reducers);
 

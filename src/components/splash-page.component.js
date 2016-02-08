@@ -1,18 +1,29 @@
 'use strict';
 
 import React, {
+  AsyncStorage,
   Component,
   View,
   Text
 } from 'react-native';
+import { loginActionCreator } from '../actions/login.action-creator';
 
 export default class SplashPage extends Component {
   componentWillMount() {
     const { navigator } = this.props;
 
-    setTimeout(()=> {
-      navigator.immediatelyResetRouteStack([{name: 'login'}]);
-    }, 1500);
+    AsyncStorage.getItem('user').then((value) => {
+
+      const user = JSON.parse(value);
+      console.log('value', value);
+      if(user){
+        loginActionCreator(user);
+        navigator.immediatelyResetRouteStack([{name: 'trailmap'}]);
+      } else {
+        navigator.immediatelyResetRouteStack([{name: 'login'}]);
+      }
+
+    }).done();
   }
 
   render() {
