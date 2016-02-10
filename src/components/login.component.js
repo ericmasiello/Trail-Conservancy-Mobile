@@ -11,7 +11,7 @@ const styles = StyleSheet.create(s);
 
 export default class LoginPage extends Component {
 
-  constructor(props){
+  constructor(props) {
     super(props);
     this.onLogin = this.onLogin.bind(this);
     this.onLogout = this.onLogout.bind(this);
@@ -20,43 +20,42 @@ export default class LoginPage extends Component {
     this.gotoNext = this.gotoNext.bind(this);
   }
 
-
-  onLogin(data){
+  onLogin(data) {
     console.log('LoginPage: logged in');
     this.props.loginActionCreator(data.credentials);
     this.gotoNext();
   }
 
-  onLogout(){
+  onLogout() {
     console.log('LoginPage: logged out');
     this.props.logoutActionCreator();
   }
 
-  onLoginFound(data){
+  onLoginFound(data) {
     console.log("LoginPage: existing login found.");
     this.props.loginActionCreator(data.credentials);
     this.gotoNext();
   }
 
-  onLoginNotFound(){
+  onLoginNotFound() {
     console.log('LoginPage: login not found');
     this.props.logoutActionCreator();
   }
 
-  onError(data){
+  onError(data) {
     console.log('LoginPage: error', data);
   }
 
-  onCancel(){
+  onCancel() {
     console.log('LoginPage: cancel');
   }
 
-  onPermissionsMissing(data){
+  onPermissionsMissing(data) {
     console.log('LoginPage: permissions missing', data);
   }
 
-  gotoNext(){
-    this.props.navigator.push({name: 'trailmap'});
+  gotoNext() {
+    this.props.navigator.push({name: 'LANDING_PAGE'});
   }
 
   render() {
@@ -71,7 +70,7 @@ export default class LoginPage extends Component {
                  onError={ this.onError }
                  onCancel={ this.onCancel }
                  onPermissionsMissing={ this.onPermissionsMissing }
-          />
+        />
       </View>
     );
   }

@@ -4,32 +4,33 @@ import React, {
   AsyncStorage,
   Component,
   View,
-  Text
+  Text,
+  StyleSheet
 } from 'react-native';
-import { loginActionCreator } from '../actions/login.action-creator';
+import s from './splash-page.style';
+const styles = StyleSheet.create(s);
 
 export default class SplashPage extends Component {
   componentWillMount() {
-    const { navigator } = this.props;
 
-    AsyncStorage.getItem('user').then((value) => {
+    const { navigator, loading } = this.props;
 
-      const user = JSON.parse(value);
-      console.log('value', value);
-      if(user){
-        loginActionCreator(user);
-        navigator.immediatelyResetRouteStack([{name: 'trailmap'}]);
-      } else {
-        navigator.immediatelyResetRouteStack([{name: 'login'}]);
-      }
-
-    }).done();
+    if (!loading) {
+      setTimeout(()=> {
+        navigator.immediatelyResetRouteStack([{name: 'LANDING_PAGE'}]);
+      }, 1500);
+    }
   }
 
   render() {
+
+    const display = this.props.loading
+      ? <Text style={styles.appTitle}>Loading...</Text>
+      : <Text style={styles.appTitle}>Trail Reporter!</Text>;
+
     return (
-      <View style={{flex: 1, backgroundColor: '#246dd5', alignItems: 'center', justifyContent: 'center'}}>
-        <Text style={{color: 'white', fontSize: 32,}}>Trail Con Splash Page!</Text>
+      <View style={styles.container}>
+        {display}
       </View>
     );
   }

@@ -23,22 +23,25 @@ export default class TrailMap extends Component {
       mapRegion: undefined,
       annotations: []
     };
-
   }
 
   componentWillMount() {
     //Firebase.enableLogging(true);
     this.ref = new Firebase('https://shining-fire-7029.firebaseio.com/annotations');
-    this.ref.push({ latitude: '42.086445', longitude: '-76.918551', title:'test1title', subtitle:'subtitle1test' });
+    this.ref.push({
+      latitude: '42.086445',
+      longitude: '-76.918551',
+      title: 'test1title',
+      subtitle: 'subtitle1test'
+    });
   }
 
   render() {
     return (
       <Navigator
         renderScene={this.renderScene}
-        />
+      />
     );
-
   }
 
   renderScene = (route, navigator) => {
@@ -62,12 +65,12 @@ export default class TrailMap extends Component {
       longitude: mapCoords[0].longitude,
       title: 'Title',
       subtitle: 'Subtitle',
-      detailCalloutView:(
+      detailCalloutView: (
         <View style={{ alignItems: 'center' }}>
           <Image
             source={require('../images/logo.png')}
             style={{height: 25, width: 25 }}
-            />
+          />
         </View>)
     }];
 
@@ -76,7 +79,7 @@ export default class TrailMap extends Component {
         <Image
           source={require('../images/logo.png')}
           style={{height: 25, width: 25 }}
-          />
+        />
         <MapView
           style={styles.map}
           region={{
@@ -87,12 +90,12 @@ export default class TrailMap extends Component {
           }}
           overlays={[overlays]}
           annotations={annotations}
-          />
+        />
       </View>
     );
   };
 
-  getAnnotations = (region) =>   {
+  getAnnotations = (region) => {
     return [{
       longitude: region.longitude,
       latitude: region.latitude,
