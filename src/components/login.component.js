@@ -11,36 +11,31 @@ const styles = StyleSheet.create(s);
 
 export default class LoginPage extends Component {
 
-  constructor(props) {
-    super(props);
-    this.onLogin = this.onLogin.bind(this);
-    this.onLogout = this.onLogout.bind(this);
-    this.onLoginNotFound = this.onLoginNotFound.bind(this);
-    this.onLoginFound = this.onLoginFound.bind(this);
-    this.gotoNext = this.gotoNext.bind(this);
-  }
-
-  onLogin(data) {
+  onLogin = (data) => {
     console.log('LoginPage: logged in');
     this.props.loginActionCreator(data.credentials);
     this.gotoNext();
-  }
+  };
 
-  onLogout() {
+  onLogout = () => {
     console.log('LoginPage: logged out');
     this.props.logoutActionCreator();
-  }
+  };
 
-  onLoginFound(data) {
+  onLoginFound = (data) => {
     console.log("LoginPage: existing login found.");
     this.props.loginActionCreator(data.credentials);
     this.gotoNext();
-  }
+  };
 
-  onLoginNotFound() {
+  onLoginNotFound = () => {
     console.log('LoginPage: login not found');
     this.props.logoutActionCreator();
-  }
+  };
+
+  gotoNext = () => {
+    this.props.navigator.push({name: 'LANDING_PAGE'});
+  };
 
   onError(data) {
     console.log('LoginPage: error', data);
@@ -52,10 +47,6 @@ export default class LoginPage extends Component {
 
   onPermissionsMissing(data) {
     console.log('LoginPage: permissions missing', data);
-  }
-
-  gotoNext() {
-    this.props.navigator.push({name: 'LANDING_PAGE'});
   }
 
   render() {
