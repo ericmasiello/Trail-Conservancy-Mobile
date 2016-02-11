@@ -11,6 +11,8 @@ import React, {
 import Firebase from 'firebase';
 import X2JS from 'x2js';
 import FairLandXML from '../gpx/fairland';
+import s from './trail.style';
+const styles = StyleSheet.create(s);
 
 export default class TrailMap extends Component {
 
@@ -103,17 +105,3 @@ export default class TrailMap extends Component {
     }];
   };
 }
-
-const styles = StyleSheet.create({
-  container: {
-    borderWidth: 1,
-    borderColor: '#000000'
-  },
-  map: {
-    height: 500,
-    width: 300,
-    margin: 10,
-    borderWidth: 1,
-    borderColor: '#000000',
-  }
-});
