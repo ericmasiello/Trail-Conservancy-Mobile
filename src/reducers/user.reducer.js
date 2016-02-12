@@ -10,6 +10,7 @@ export default (state = null, action = {}) => {
       AsyncStorage.setItem('user', JSON.stringify(action.payload));
       return action.payload;
     case USER_LOGGED_OUT:
+      AsyncStorage.setItem('user', '');
       return null;
   }
 
