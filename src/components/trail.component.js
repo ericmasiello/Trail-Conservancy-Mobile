@@ -1,47 +1,49 @@
 'use strict';
 
-import React from 'react-native';
-
-const {
+import React, {
   Component,
   View,
   StyleSheet,
   MapView,
   Image,
   Navigator
-} = React;
-
+} from 'react-native';
 import Firebase from 'firebase';
 import X2JS from 'x2js';
 import FairLandXML from '../gpx/fairland';
+import s from './trail.style';
+const styles = StyleSheet.create(s);
 
-class TrailMap extends Component {
+export default class TrailMap extends Component {
 
   constructor(props) {
 
-      super(props);
+    super(props);
 
-      this.state = {
-        isFirstLoad: true,
-        mapRegion: undefined,
-        annotations: []
-      };
-
+    this.state = {
+      isFirstLoad: true,
+      mapRegion: undefined,
+      annotations: []
+    };
   }
 
   componentWillMount() {
     //Firebase.enableLogging(true);
     this.ref = new Firebase('https://shining-fire-7029.firebaseio.com/annotations');
-    this.ref.push({ latitude: '42.086445', longitude: '-76.918551', title:'test1title', subtitle:'subtitle1test' });
+    this.ref.push({
+      latitude: '42.086445',
+      longitude: '-76.918551',
+      title: 'test1title',
+      subtitle: 'subtitle1test'
+    });
   }
 
-  render() { 
+  render() {
     return (
       <Navigator
-      renderScene={this.renderScene}
+        renderScene={this.renderScene}
       />
     );
-
   }
 
   renderScene = (route, navigator) => {
@@ -65,21 +67,21 @@ class TrailMap extends Component {
       longitude: mapCoords[0].longitude,
       title: 'Title',
       subtitle: 'Subtitle',
-      detailCalloutView:(
+      detailCalloutView: (
         <View style={{ alignItems: 'center' }}>
           <Image
-            source={require('./logo.png')}
+            source={require('../images/logo.png')}
             style={{height: 25, width: 25 }}
-            />
+          />
         </View>)
     }];
 
     return (
       <View style={styles.container}>
-       <Image
-            source={require('./logo.png')}
-            style={{height: 25, width: 25 }}
-            />
+        <Image
+          source={require('../images/logo.png')}
+          style={{height: 25, width: 25 }}
+        />
         <MapView
           style={styles.map}
           region={{
@@ -90,12 +92,12 @@ class TrailMap extends Component {
           }}
           overlays={[overlays]}
           annotations={annotations}
-          />
+        />
       </View>
     );
   };
 
-getAnnotations = (region) =>   {
+  getAnnotations = (region) => {
     return [{
       longitude: region.longitude,
       latitude: region.latitude,
@@ -103,19 +105,3 @@ getAnnotations = (region) =>   {
     }];
   };
 }
-
-const styles = StyleSheet.create({
-  container: {
-    borderWidth: 1,
-    borderColor: '#000000'
-  },
-  map: {
-    height: 500,
-    width: 300,
-    margin: 10,
-    borderWidth: 1,
-    borderColor: '#000000',
-  }
-});
-
-export default TrailMap;
