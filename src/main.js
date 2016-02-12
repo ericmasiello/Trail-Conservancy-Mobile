@@ -30,6 +30,11 @@ export default class Main extends Component {
     };
     let Component;
 
+    if (route.name == 'LOGIN'){
+      Component = ROUTES['LOGIN'];
+      return <Component {...props}/>;
+    }
+
     if(!user && route.name !== 'SPLASH'){
 
       //check the local storage
