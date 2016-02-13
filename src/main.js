@@ -6,7 +6,7 @@ import React, {
   StyleSheet,
   Navigator,
 } from 'react-native';
-import { Provider } from 'react-redux/native';
+import { Provider } from 'react-redux';
 import { createStore, applyMiddleware } from 'redux';
 import reducers from './reducers/';
 import ROUTES from './config/routes';
@@ -68,12 +68,12 @@ export default class Main extends Component {
   render() {
     return (
       <Provider store={store}>
-        {() => <Navigator
+        <Navigator
           style={styles.container}
           initialRoute={{name: 'SPLASH'}}
           renderScene={this.renderScene}
           configureScene={()=> { return Navigator.SceneConfigs.FloatFromRight; }}
-          />}
+          />
       </Provider>
     );
   }

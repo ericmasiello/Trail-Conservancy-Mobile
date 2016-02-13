@@ -1,5 +1,5 @@
 import React from 'react-native';
-import { connect } from 'react-redux/native';
+import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import TrailsPage from '../components/trail.component';
 import { loadTrails } from '../actions/trails.action-creator';
