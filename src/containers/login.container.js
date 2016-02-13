@@ -1,5 +1,5 @@
 import React from 'react-native';
-import { connect } from 'react-redux/native';
+import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import LoginPage from '../components/login.component';
 import { loginActionCreator, logoutActionCreator } from '../actions/login.action-creator';
