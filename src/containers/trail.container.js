@@ -2,17 +2,19 @@ import React from 'react-native';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import TrailsPage from '../components/trail.component';
-import { loadTrails } from '../actions/trails.action-creator';
+import { fetchAnnotations } from '../actions/trail-annotations.action-creator';
+import { fetchTrails } from '../actions/trails.action-creator';
 
-const mapStateToProps = ({trails}) => {
+const mapStateToProps = ({annotations, trails }) => {
   'use strict';
-  return { trails };
+  return { annotations, trails };
 };
 
 const mapDispatchToProps = (dispatch) => {
   'use strict';
   return bindActionCreators({
-    loadTrails
+    fetchAnnotations,
+    fetchTrails
   }, dispatch);
 };
 

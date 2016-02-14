@@ -1,18 +1,18 @@
-import { REQUEST_TRAILS, RECEIVE_TRAILS } from '../actions/types';
+import { REQUEST_ANNOTATIONS, RECEIVE_ANNOTATIONS } from '../actions/types';
 
 export default (state = {
-  trails: [],
+  annotations: [],
   isFetching: false
 }, action = {}) => {
   'use strict';
 
   switch (action.type) {
-    case REQUEST_TRAILS:
+    case REQUEST_ANNOTATIONS:
       return {...state, isFetching: true}
-    case RECEIVE_TRAILS:
+    case RECEIVE_ANNOTATIONS:
       return {
         isFetching: false,
-        trails: action.payload
+        annotations: action.payload
       }
   }
 

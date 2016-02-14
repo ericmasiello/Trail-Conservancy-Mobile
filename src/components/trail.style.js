@@ -1,11 +1,9 @@
 export default {
   container: {
-    borderWidth: 1,
-    borderColor: '#000000'
+    flex: 1
   },
   map: {
-    height: 500,
-    width: 300,
+    flex: 1,
     margin: 10,
     borderWidth: 1,
     borderColor: '#000000',
