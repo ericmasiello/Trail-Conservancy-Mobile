@@ -1,16 +1,14 @@
-import React from 'react-native';
+'use strict';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import LoginPage from '../components/login.component';
 import { loginActionCreator, logoutActionCreator } from '../actions/login.action-creator';
 
 const mapStateToProps = ({user}) => {
-  'use strict';
   return { user };
 };
 
 const mapDispatchToProps = (dispatch) => {
-  'use strict';
   return bindActionCreators({
     loginActionCreator,
     logoutActionCreator

@@ -1,3 +1,4 @@
+'use strict';
 import SplashPage from '../components/splash-page.component';
 import LoginPage from '../containers/login.container';
 import TrailMap from '../containers/trail.container';

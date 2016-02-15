@@ -1,42 +1,30 @@
 'use strict';
 
-import React from 'react-native';
+ 
 import Icon from 'react-native-vector-icons/Ionicons';
 
-const {
-  Component,
-  NavigatorIOS,
-  TabBarIOS,
-  View,
-  AlertIOS
-} = React;
-
+import React, {Component, TabBarIOS, View, AlertIOS, StyleSheet, Dimensions} from 'react-native';
+ 
 export default class Menu extends Component {
 
   constructor(props) {
     super(props);
+    console.log(props);
     this.state = {
-      selectedTab: 'location'
+      selectedTab: 'location',
     };
   }
 
-  renderSection(route, ref) {
-    return (
-      <NavigatorIOS
-        ref={ref}
-        initialRoute={route}
-        barTintColor="#FFF"
-        shadowHidden={true}
-        tintColor="#ED253C"
-        titleTextColor="#CE2132"
-        translucent={false}
-      />
-    );
-  }
+
+  componentDidMount() {
+  
+  };
+
+ 
 
   // A demo method to show tab press events are working. Will remove
   // when we add save photo on next PR
-  sayHello(msg){
+   sayHello = (msg) => {
     AlertIOS.alert(
       'Clicked tab ' + msg,
       null,
@@ -47,6 +35,8 @@ export default class Menu extends Component {
   }
 
   render() {
+    console.log('the ref');
+    console.log(this.props.theRef);
     return (
         <TabBarIOS>
         <Icon.TabBarItem
@@ -62,19 +52,22 @@ export default class Menu extends Component {
           }}>
         <View/>
         </Icon.TabBarItem>
-        <Icon.TabBarItem
-          title="Report Problem"
-          iconName="alert-circled"
-          selectedIconName="alert-circled"
-          selected={this.state.selectedTab === 'report'}
-          onPress={() => {
-            this.setState({
-              selectedTab: 'report'
-            });
-            this.sayHello('Report Problem');
-          }}>
-         <View/>
-        </Icon.TabBarItem>
+
+          <Icon.TabBarItem
+            title="Report Problem"
+            iconName="alert-circled"
+            selectedIconName="alert-circled"
+            selected={this.state.selectedTab === 'report'}
+            onPress={() => {
+              this.setState({
+                selectedTab: 'report'
+              });
+              {this.props.callBack()};
+            }}>
+           <View>
+
+           </View>
+          </Icon.TabBarItem>       
         <Icon.TabBarItem
           title="Add Site"
           iconName="ios-analytics-outline"
@@ -103,6 +96,29 @@ export default class Menu extends Component {
           <View/>
         </Icon.TabBarItem>
       </TabBarIOS>
+   
+
     );
   }
 }
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1
+  },
+  preview: {
+    flex: 1,
+    justifyContent: 'flex-end',
+    alignItems: 'center',
+    height: Dimensions.get('window').height,
+    width: Dimensions.get('window').width
+  },
+  capture: {
+    flex: 0,
+    backgroundColor: '#fff',
+    borderRadius: 5,
+    color: '#000',
+    padding: 10,
+    margin: 40
+  }
+});

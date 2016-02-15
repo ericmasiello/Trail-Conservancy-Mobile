@@ -1,7 +1,6 @@
 'use strict';
 
 import React, {
-  AsyncStorage,
   Component,
   View,
   Text,

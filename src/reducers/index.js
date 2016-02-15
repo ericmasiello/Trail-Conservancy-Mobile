@@ -1,3 +1,4 @@
+'use strict';
 import { combineReducers } from 'redux';
 import trailAnnotationsReducer from './trail-annotations.reducer';
 import trailsReducer from './trails.reducer';
