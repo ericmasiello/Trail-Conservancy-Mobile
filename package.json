@@ -12,6 +12,7 @@
     "react-native-facebook-login": "^1.0.3",
     "react-redux": "^4.4.0",
     "redux": "^3.3.1",
+    "react-native-vector-icons": "^1.1.0",
     "redux-thunk": "^1.0.3",
     "x2js": "^2.0.0",
     "xmldom": "^0.1.21"
