@@ -23,7 +23,7 @@ export default class LoginPage extends Component {
   };
 
   onLoginFound = (data) => {
-    console.log("LoginPage: existing login found.");
+    console.log('LoginPage: existing login found.');
     this.props.loginActionCreator(data.credentials);
     this.gotoNext();
   };

@@ -1,7 +1,10 @@
+'use strict';
 import { combineReducers } from 'redux';
 import trailAnnotationsReducer from './trail-annotations.reducer';
 import trailsReducer from './trails.reducer';
 import userReducer from './user.reducer';
+import mapReducer from './map.reducer';
+import tabsReducer from './tabs.reducer';
 
 /*
  * The object returned from here represents our GLOBAL
@@ -10,7 +13,9 @@ import userReducer from './user.reducer';
 const rootReducer = combineReducers({
   user: userReducer,
   annotations: trailAnnotationsReducer,
-  trails: trailsReducer
+  trails: trailsReducer,
+  map:mapReducer,
+  tabs:tabsReducer
 });
 
 export default rootReducer;

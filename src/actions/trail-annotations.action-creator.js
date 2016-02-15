@@ -1,31 +1,49 @@
-import { REQUEST_ANNOTATIONS, RECEIVE_ANNOTATIONS } from './types';
+'use strict';
+import { REQUEST_ANNOTATIONS, RECEIVE_ANNOTATIONS, SEND_ANNOTATION, SEND_ANNOTATION_REPLY } from './types';
 import dataModel from '../utilities/data-model';
 
 function requestAnnotations() {
-  'use strict';
-
   return {
     type: REQUEST_ANNOTATIONS
-  }
+  };
 }
 
 function receiveAnnotations(payload) {
-  'use strict';
-
   return {
     type: RECEIVE_ANNOTATIONS,
     payload
-  }
+  };
+}
+
+function sendAnnotation(payload) {
+  return {
+    type: SEND_ANNOTATION,
+    payload
+  };
+}
+
+function sendAnnotationReply(payload) {
+  return {
+    type: SEND_ANNOTATION_REPLY,
+    payload
+  };
 }
 
 export function fetchAnnotations() {
-  'use strict';
-
+  console.log('fetchAnnotations');
   return (dispatch) => {
     dispatch(requestAnnotations());
-
     dataModel.fetchMapAnnotations().then((response)=>{
       dispatch(receiveAnnotations(response));
     });
-  }
+  };
+}
+
+export function saveAnnotation(annotation){
+   return (dispatch) => {
+    dispatch(sendAnnotation(annotation));
+    dataModel.saveAnnotation(annotation).then((response)=>{
+      dispatch(sendAnnotationReply(response));
+    });
+  };
 }

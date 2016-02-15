@@ -1,19 +1,27 @@
-import { REQUEST_ANNOTATIONS, RECEIVE_ANNOTATIONS } from '../actions/types';
+'use strict';
+import { REQUEST_ANNOTATIONS, RECEIVE_ANNOTATIONS, SEND_ANNOTATION, SEND_ANNOTATION_REPLY } from '../actions/types';
 
 export default (state = {
   annotations: [],
-  isFetching: false
+  isFetching: false,
+  isSaving: false
 }, action = {}) => {
-  'use strict';
 
   switch (action.type) {
     case REQUEST_ANNOTATIONS:
-      return {...state, isFetching: true}
+      return {...state, isFetching: true};
     case RECEIVE_ANNOTATIONS:
       return {
         isFetching: false,
         annotations: action.payload
-      }
+      };
+    case SEND_ANNOTATION:
+      return {...state, isSaving: true};
+    case SEND_ANNOTATION_REPLY:
+      return {
+        isSaving: false,
+        annotations: action.payload
+      };
   }
 
   return state;
