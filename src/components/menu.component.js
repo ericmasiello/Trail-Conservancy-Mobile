@@ -1,15 +1,8 @@
 'use strict';
 
-import React from 'react-native';
 import Icon from 'react-native-vector-icons/Ionicons';
 
-const {
-  Component,
-  NavigatorIOS,
-  TabBarIOS,
-  View,
-  AlertIOS
-} = React;
+import React, {Component, TabBarIOS, View, AlertIOS,} from 'react-native';
 
 export default class Menu extends Component {
 
@@ -18,20 +11,6 @@ export default class Menu extends Component {
     this.state = {
       selectedTab: 'location'
     };
-  }
-
-  renderSection(route, ref) {
-    return (
-      <NavigatorIOS
-        ref={ref}
-        initialRoute={route}
-        barTintColor="#FFF"
-        shadowHidden={true}
-        tintColor="#ED253C"
-        titleTextColor="#CE2132"
-        translucent={false}
-      />
-    );
   }
 
   // A demo method to show tab press events are working. Will remove
