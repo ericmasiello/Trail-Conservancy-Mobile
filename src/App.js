@@ -13,11 +13,8 @@ var TrailMap = require('./TrailMap');
 var Camera = require("react-native-camera");
 
 const Firebase = require('firebase');
-
-var ReadImageData = require('NativeModules').ReadImageData;
-
- var base64ImgLoaded = 'data:image/png;base64';
-
+ 
+var RNFS = require('react-native-fs');
 
 module.exports = React.createClass({
   getInitialState: function() {
@@ -59,17 +56,21 @@ module.exports = React.createClass({
       metadata: {
         location: this.props.location
       },
-      target: Camera.constants.CaptureTarget.cameraRoll,
+      target: Camera.constants.CaptureTarget.disk,
     },
-      function(err, data) {
-      
+      function(err, filePath) {
       // ======
-      // After camera capture, encode image as base 64 and send to firebase
-      // =====
-      var uri = data;
-      ReadImageData.readImage(uri, (imageBase64) => {
-        obj.photoRef.set(imageBase64)
+      // After camera capture, read base64 encoded image from disk and 
+      // pass to firebase.  Disk is recommended for performance reasons.
+      // =====      
+      
+      RNFS.readFile(filePath, 'base64').then((fileData) => {
+         obj.photoRef.set(fileData);
+      })
+      .catch((err) => {
+        console.log(err.message);
       });
+
     });
   },
   render: function() {
