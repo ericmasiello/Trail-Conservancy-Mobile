@@ -7,18 +7,26 @@ import React, {
   MapView,
   Image,
   Navigator,
-  Text
+  Text,
+  Modal,
+  TouchableHighlight
 } from 'react-native';
 import s from './trail.style';
 const styles = StyleSheet.create(s);
 
 import Menu from './menu.component';
- 
+
 export default class TrailMap extends Component {
 
   componentWillMount() {
     this.props.fetchAnnotations();
     this.props.fetchTrails();
+
+    this.state = {
+      animated: true,
+      modalVisible: false,
+      transparent: false,
+    };
   }
 
   render() {
@@ -62,9 +70,28 @@ export default class TrailMap extends Component {
         </View>)
     }];
 
+    var modalBackgroundStyle = {
+      backgroundColor: this.state.transparent ? 'rgba(0, 0, 0, 0.5)' : '#f5fcff',
+    };
+
+    var innerContainerTransparentStyle = this.state.transparent
+     ? {backgroundColor: '#fff', padding: 20}
+     : null;
 
     return (
       <View style={styles.container}>
+      <TouchableHighlight style={{height: 50, backgroundColor: '#cc0000', justifyContent: 'center', alignItems: 'center'}} onPress={()=>{ this.setState({modalVisible: true}); }}><Text>Click Me</Text></TouchableHighlight>
+      <Modal
+        animated={this.state.animated}
+        transparent={this.state.transparent}
+        visible={this.state.modalVisible}>
+        <View style={[styles.container, modalBackgroundStyle]}>
+          <View style={[styles.innerContainer, innerContainerTransparentStyle]}>
+            <Text>This modal was presented {this.state.animated ? 'with' : 'without'} animation.</Text>
+            <TouchableHighlight onPress={()=>{ this.setState({modalVisible: false}); }}><Text>Click Me</Text></TouchableHighlight>
+          </View>
+        </View>
+      </Modal>
         <View style={styles.mapView}>
       <MapView
           style={styles.map}

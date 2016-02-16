@@ -12,5 +12,11 @@ export default {
   map: {
       flex: 1,
   },
-   
+  modal: {
+    backgroundColor: '#ffffff',
+    color: '#000000',
+    flex: 1,
+    margin: 20
+  }
+
 };
