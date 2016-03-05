@@ -88,12 +88,12 @@ export default class ReportProblem extends Component {
 
   render() {
     return (
-       <View style={styles.outerView}>
-        <View style={styles.innerView}>
+       <View style={styles.container}>
+        <View style={styles.container}>
           <Camera  
                 ref={(c) => this.cam = c}
                 type='cameraType: Camera.constants.Type.back'
-                style={styles.camera}
+                style={styles.container}
                 aspect={Camera.constants.Aspect.Fill}
           />
          </View>

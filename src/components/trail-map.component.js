@@ -36,9 +36,9 @@ export default class TrailMap extends Component {
 
       console.log('trails are empty', trails, isFetching);
       return (
-      <View style={styles.outerView}>
-        <View style={styles.innerView}>
-          <MapView style={styles.map}/>
+      <View style={styles.container}>
+        <View style={styles.container}>
+          <MapView style={styles.container}/>
         </View>
       </View>
       );
@@ -76,11 +76,11 @@ export default class TrailMap extends Component {
 
     // outer view needed since tabview requires single child
     return (
-      <View style={styles.outerView}>
-         <View style={styles.innerView}>
+      <View style={styles.container}>
+         <View style={styles.container}>
           <MapView
             ref="map"
-            style={styles.map}
+            style={styles.container}
             region={{
               latitude: lat,
               longitude: lng,
@@ -111,7 +111,7 @@ export default class TrailMap extends Component {
         title: 'You Are Here',
         subtitle: 'Subtitle',
         detailCalloutView: (
-          <View style={styles.annotationView}>
+          <View style={styles.container}>
             <Image
               source={{uri:photo}}
               style={styles.annotation}

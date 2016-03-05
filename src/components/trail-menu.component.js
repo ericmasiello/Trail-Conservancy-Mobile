@@ -19,7 +19,7 @@ export default class TrailMenu extends Component {
       selectedTab: 'location',
     };
   }
- 
+
   componentWillReceiveProps(){
     if (this.props.tabs && this.props.tabs.selectedTab){
       this.state.selectedTab = this.props.tabs.selectedTab;
@@ -29,10 +29,10 @@ export default class TrailMenu extends Component {
   render() {
     console.log('Rerender Menu');
     return (
-    <View style={styles.outerView}>
-      <View style={styles.innerView}>
+    <View style={styles.container}>
+      <View style={styles.container}>
         <TabBarIOS style={styles.tabBar}>
-          <Icon.TabBarItem style={styles.tabBarItem}
+          <Icon.TabBarItem style={styles.container}
             title="My Location"
             iconName="android-locate"
             selectedIconName="android-locate"
@@ -40,7 +40,7 @@ export default class TrailMenu extends Component {
             onPress={() => {
               this.setState({'selectedTab': 'location'});
             }}>
-          <Navigator style={styles.tabNavigator}
+          <Navigator style={styles.container}
               initialRoute={{name: 'TrailMap', component: TrailMap}}
               configureScene={() => {
                 return Navigator.SceneConfigs.PushFromRight;
@@ -48,13 +48,13 @@ export default class TrailMenu extends Component {
               renderScene={(route, navigator) => {
                 console.log('render tab loc');
                return (
-                  <View  style={styles.tabView}>
-                    <TrailMap style={styles.tabScreen} />
+                  <View  style={styles.container}>
+                    <TrailMap style={styles.container} />
                   </View>
                 );
             }} />
           </Icon.TabBarItem>
-          <Icon.TabBarItem style={styles.tabBarItem}
+          <Icon.TabBarItem style={styles.container}
             title="Report Problem"
             iconName="alert-circled"
             selectedIconName="alert-circled"
@@ -62,20 +62,20 @@ export default class TrailMenu extends Component {
             onPress={() => {
               this.setState({'selectedTab': 'report'});
             }}>
-          <Navigator style={styles.tabNavigator}
+          <Navigator style={styles.container}
             initialRoute={{name: 'ReportProblem', component: ReportProblem}}
             configureScene={() => {
               return Navigator.SceneConfigs.PushFromRight;
             }}
             renderScene={(route, navigator) => {
                return (
-                 <View  style={styles.tabView}>
-                  <ReportProblem  style={styles.tabScreen}/>
+                 <View  style={styles.container}>
+                  <ReportProblem  style={styles.container}/>
                  </View>
                 );
           }} />
           </Icon.TabBarItem>
-          <Icon.TabBarItem style={styles.tabBarItem}
+          <Icon.TabBarItem style={styles.container}
             title="Add Site"
             iconName="ios-analytics-outline"
             selectedIconName="ios-analytics-outline"
@@ -84,9 +84,9 @@ export default class TrailMenu extends Component {
               this.setState({'selectedTab': 'addsite'});
             }}>
 
-            <View style={styles.tabView}/>
+            <View style={styles.container}/>
           </Icon.TabBarItem>
-          <Icon.TabBarItem style={styles.tabBarItem}
+          <Icon.TabBarItem style={styles.container}
             title="Add Note"
             iconName="ios-plus-outline"
             selectedIconName="ios-plus-outline"
@@ -94,7 +94,7 @@ export default class TrailMenu extends Component {
             onPress={() => {
               this.setState({'selectedTab': 'addnote'});
             }}>
-            <View style={styles.tabView}/>
+            <View style={styles.container}/>
           </Icon.TabBarItem>
         </TabBarIOS>
       </View>
