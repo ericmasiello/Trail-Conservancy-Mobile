@@ -46,7 +46,7 @@ export default {
     // Geohash is needed because lat/lng contains comma and can't be firebase key
     // also, GeoHash allows us to determine if point is x distance from center 
     // for display. Firebase offers GeoFire API but it is slow to save for some reason. 
-    const geoHash = GeoHash.encode(annotation.lat, annotation.lng);
+    const geoHash = GeoHash.encode(annotation.lat, annotation.lng, 20);
     const firebase = new Firebase(`${ROOT_URL}/annotations/` + geoHash);
     return new Promise(function(resolve, reject) {   
         var onComplete = function(error) {
