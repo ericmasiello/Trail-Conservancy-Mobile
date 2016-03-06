@@ -9,18 +9,12 @@ import React, {
 } from 'react-native';
 import s from './trail-map.style';
 const styles = StyleSheet.create(s);
- 
+
 export default class TrailMap extends Component {
 
 
   constructor(props) {
     super(props);
-  }
-
-  componentWillReceiveProps(){
-      // Focus on current location on initial load
-      this.setState({'lat': this.props.currLat});
-      this.setState({'lng': this.props.currLng});
   }
 
   componentWillMount() {
@@ -29,8 +23,7 @@ export default class TrailMap extends Component {
   }
 
   render() {
-   console.log('Rerender map page');
-    
+
     const { trails, isFetching, isSaving } = this.props.trails;
 
     // Render a default empty map if we are loading
@@ -58,8 +51,8 @@ export default class TrailMap extends Component {
             ref="map"
             style={styles.container}
             region={{
-              latitude: this.state.lat,
-              longitude: this.state.lng,
+              latitude: this.props.userLocation.lat,
+              longitude: this.props.userLocation.lng,
               latitudeDelta: .01,
               longitudeDelta: .01
             }}

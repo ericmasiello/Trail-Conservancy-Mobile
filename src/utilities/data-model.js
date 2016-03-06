@@ -50,17 +50,14 @@ export default {
   saveAnnotation(geoHash, annotation) {
 
     const firebase = new Firebase(`${ROOT_URL}/annotations/` + geoHash);
-    return new Promise(function(resolve, reject) {   
+    return new Promise(function(resolve, reject) {
         var onComplete = function(error) {
           if (error) {
-            console.log('Save annotation failed');
             reject(error);
           } else {
-            console.log('Save annotation succeeded');
-            resolve(); // undefined for resolve means save was a success
+            resolve();
           }
         };
-
         annotation.geoHash = geoHash;
         firebase.update(annotation,onComplete);
     });
@@ -79,47 +76,51 @@ export default {
     });
   },
   savePhoto(geoHash, filePath) {
+
+    var doSavePhoto = (filePathToSave, attrName, geoHashToSave) => {
+      const firebase = new Firebase(`${ROOT_URL}/photos/` + geoHash);
+
+      return new Promise((resolve, reject) => {
+        var onComplete = function(error) {
+          if (error) {
+            reject(error);
+          } else {
+            resolve();
+          }
+        };
+        RNFS.readFile(filePathToSave, 'base64').then((fileData) => {
+          var photo = {};
+          photo[attrName] = fileData;
+          photo.geoHash = geoHashToSave;
+          firebase.update(photo,onComplete);
+        })
+        .catch((error) => {
+          console.log(error.message);
+        });
+      });
+    };
+
+    var doResizePhoto = (filePathToResize, width, height, quality) => {
+      return new Promise((resolve, reject) => {
+         ImageResizer.createResizedImage(filePathToResize, width, height, 'JPEG', quality).then((resizedImageUri) => {
+          resolve(resizedImageUri);
+         });
+      });
+    };
+
     return new Promise((resolve, reject) => {
 
       // Save thumbnail
-       this.doResizePhoto(filePath, 20, 20, 30)
-      .then((resizedFilePath) => this.doSavePhoto(resizedFilePath,'thumbnail',geoHash));
+      doResizePhoto(filePath, 20, 20, 30)
+      .then((resizedFilePath) => doSavePhoto(resizedFilePath,'thumbnail',geoHash));
 
       // Save larger
-      this.doResizePhoto(filePath, 200, 200, 30)
-      .then((resizedFilePath) => this.doSavePhoto(resizedFilePath,'large',geoHash));
+      doResizePhoto(filePath, 200, 200, 30)
+      .then((resizedFilePath) => doSavePhoto(resizedFilePath,'large',geoHash));
 
       // Return immediately and let both promises run in parallel in background
       resolve();
     });
-  },
-  doResizePhoto(filePath, width, height, quality){
-    return new Promise((resolve, reject) => {
-       ImageResizer.createResizedImage(filePath, width, height, 'JPEG', quality).then((resizedImageUri) => {
-        resolve(resizedImageUri);
-       });
-    });
-  },
-  doSavePhoto(filePath, attrName, geoHash){
-    const firebase = new Firebase(`${ROOT_URL}/photos/` + geoHash);
 
-    return new Promise((resolve, reject) => {
-      var onComplete = function(error) {
-        if (error) {
-          reject(error);
-        } else {
-          resolve();
-        }
-      };
-      RNFS.readFile(filePath, 'base64').then((fileData) => {  
-        var photo = {};
-        photo[attrName] = fileData;
-        photo.geoHash = geoHash;
-        firebase.update(photo,onComplete);
-      })
-      .catch((error) => {
-        console.log(error.message);
-      });
-    });
   },
 };

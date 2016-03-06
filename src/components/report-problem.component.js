@@ -24,19 +24,6 @@ export default class ReportProblem extends Component {
   constructor(props) {
     super(props);
   }
-  componentDidMount(){
-    // Note: must set lat / lng in componentDidMount and componentWillReceiveProps since
-    // componentWillReceiveProps is not called on initial render (so var will not be set 1st time)
-    this.state = {
-      cameraType: Camera.constants.Type.back,
-      'lat': this.props.currLat,
-      'lng': this.props.currLng
-    };
-  }
-  componentWillReceiveProps(){
-      this.setState({'lat': this.props.currLat});
-      this.setState({'lng': this.props.currLng});
-  }
 
   /**
    * Capture a photo with the camera, add in the geolocation, save to disk, send to firebase
@@ -46,9 +33,9 @@ export default class ReportProblem extends Component {
    */
   capturePhoto = () => {
 
- 
-    var obj = this;
-  
+
+    var self = this;
+
     this.cam.capture({
       metadata: {
         location: this.props.location
@@ -57,25 +44,29 @@ export default class ReportProblem extends Component {
     },
     function(err, filePath) {
 
-      const geoHash = GeoHash.encode(obj.state.lat, obj.state.lng, 20);
+      const geoHash = GeoHash.encode(self.props.userLocation.lat, self.props.userLocation.lng, 20);
 
-      obj.props.saveAnnotation(geoHash, {'lat':obj.state.lat, 'lng': obj.state.lng});
+      self.props.saveAnnotation(geoHash, {'lat': self.props.userLocation.lat, 'lng': self.props.userLocation.lng});
 
-      obj.props.savePhoto(geoHash, filePath);
+      navigator.geolocation.getCurrentPosition(
+        (position) => {
+          self.props.updateUserLocation(position.coords.latitude,position.coords.longitude);
+        }
+      );
 
-      obj.props.fetchAnnotations();
+      self.props.savePhoto(geoHash, filePath);
 
-      obj.props.panMapActionCreator(obj.state.lat, obj.state.lng);
+      self.props.fetchAnnotations();
 
-      obj.props.switchTab('location');
+      self.props.switchTab('location');
 
     });
   }
 
   render() {
     return (
-       <View style={styles.container}>   
-          <Camera  
+       <View style={styles.container}>
+          <Camera
                 ref={(c) => this.cam = c}
                 type='cameraType: Camera.constants.Type.back'
                 style={styles.container}

@@ -8,6 +8,9 @@ import ReportProblem from '../containers/report-problem.container';
 
 import TrailMap from '../containers/trail-map.container';
 
+import GetUserLocation from '../containers/get-user-location.container';
+
+
 import s from './trail-menu.style';
 const styles = StyleSheet.create(s);
 
@@ -20,32 +23,6 @@ export default class TrailMenu extends Component {
     };
   }
 
-
-  /**
-   * Store geolocation in state variable so we can pass it
-   * to subcomponents (map and report problem screen). The 
-   * lat/lng are passed down in props and auto-updated.
-   */
-  trackLocation = () => {
-      navigator.geolocation.getCurrentPosition(
-        (position) => {
-          var lat = position.coords.latitude;
-          var lng = position.coords.longitude;
-          this.setState({'currLat':lat, 'currLng':lng});
-        },
-        (error) => console.log(error.message),
-        {enableHighAccuracy: true, timeout: 20000, maximumAge: 1000}
-      );
-      this.watchID = navigator.geolocation.watchPosition((position) => {
-        var lat = position.coords.latitude;
-        var lng = position.coords.longitude;
-        this.setState({'currLat':lat, 'currLng':lng});
-      });
-  }
-
-  componentDidMount(){
-    this.trackLocation();
-  }
 
   /**
    *  Triggered via callback from report problem screen
@@ -61,6 +38,7 @@ export default class TrailMenu extends Component {
     console.log('Rerender Menu');
     return (
       <View style={styles.container}>
+        <GetUserLocation {...this.props} />
         <TabBarIOS style={styles.tabBar}>
           <Icon.TabBarItem style={styles.container}
             title="My Location"
@@ -77,7 +55,7 @@ export default class TrailMenu extends Component {
               }}
               renderScene={(route, navigator) => {
                return (
-                    <TrailMap {...props} style={styles.container} />
+                    <TrailMap style={styles.container} />
                 );
             }} />
           </Icon.TabBarItem>
@@ -96,7 +74,7 @@ export default class TrailMenu extends Component {
             }}
             renderScene={(route, navigator) => {
                return (
-                  <ReportProblem {...props} switchTab={this.switchTab} style={styles.container}/>
+                  <ReportProblem  switchTab={this.switchTab} style={styles.container}/>
                 );
           }} />
           </Icon.TabBarItem>

@@ -4,11 +4,11 @@ import { bindActionCreators } from 'redux';
 import ReportProblem from '../components/report-problem.component';
 import { saveAnnotation } from '../actions/trail-annotations.action-creator';
 import { savePhoto } from '../actions/photo.action-creator';
-import { panMapActionCreator} from '../actions/map.action-creator';
 import { fetchAnnotations } from '../actions/trail-annotations.action-creator';
+import { updateUserLocation } from '../actions/user-location.action-creator';
 
-const mapStateToProps = ({annotations }) => {
-  return { annotations };
+const mapStateToProps = ({userLocation}) => {
+  return { userLocation };
 };
 
 const mapDispatchToProps = (dispatch) => {
@@ -16,7 +16,7 @@ const mapDispatchToProps = (dispatch) => {
     saveAnnotation,
     savePhoto,
     fetchAnnotations,
-    panMapActionCreator
+    updateUserLocation
   }, dispatch);
 };
 

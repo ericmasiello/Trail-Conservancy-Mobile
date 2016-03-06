@@ -30,7 +30,6 @@ function sendPhotoReply(payload) {
 }
 
 export function fetchPhoto() {
-  console.log('fetchPhoto');
   return (dispatch) => {
     dispatch(requestPhoto());
     dataModel.fetchMapPhoto().then((response)=>{
