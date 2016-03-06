@@ -3,8 +3,8 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import TrailMenu from '../components/trail-menu.component';
 
-const mapStateToProps = ({annotations, trails, tabs }) => {
-  return { annotations, trails, tabs};
+const mapStateToProps = ({annotations, trails }) => {
+  return { annotations, trails};
 };
 
 const mapDispatchToProps = (dispatch) => {

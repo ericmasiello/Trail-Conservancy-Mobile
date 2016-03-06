@@ -39,10 +39,10 @@ export function fetchAnnotations() {
   };
 }
 
-export function saveAnnotation(annotation){
+export function saveAnnotation(geoHash, annotation){
    return (dispatch) => {
-    dispatch(sendAnnotation(annotation));
-    dataModel.saveAnnotation(annotation).then((response)=>{
+    dispatch(sendAnnotation(geoHash, annotation));
+    dataModel.saveAnnotation(geoHash, annotation).then((response)=>{
       dispatch(sendAnnotationReply(response));
     });
   };

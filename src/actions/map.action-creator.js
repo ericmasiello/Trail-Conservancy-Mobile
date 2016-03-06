@@ -1,9 +1,9 @@
 'use strict';
 import { PAN_MAP, } from './types';
 
-export function panMapActionCreator(panToLat, panToLng){
+export function panMapActionCreator(lat, lng){
    return {
     type: PAN_MAP,
-    payload: {panToLat,panToLng}
+    payload: {lat,lng}
   };
 }

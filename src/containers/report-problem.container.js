@@ -3,8 +3,8 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import ReportProblem from '../components/report-problem.component';
 import { saveAnnotation } from '../actions/trail-annotations.action-creator';
+import { savePhoto } from '../actions/photo.action-creator';
 import { panMapActionCreator} from '../actions/map.action-creator';
-import { switchTabActionCreator } from '../actions/tabs.action-creator';
 import { fetchAnnotations } from '../actions/trail-annotations.action-creator';
 
 const mapStateToProps = ({annotations }) => {
@@ -14,9 +14,9 @@ const mapStateToProps = ({annotations }) => {
 const mapDispatchToProps = (dispatch) => {
   return bindActionCreators({
     saveAnnotation,
+    savePhoto,
     fetchAnnotations,
-    panMapActionCreator,
-    switchTabActionCreator
+    panMapActionCreator
   }, dispatch);
 };
 

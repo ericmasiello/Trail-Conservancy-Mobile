@@ -20,16 +20,46 @@ export default class TrailMenu extends Component {
     };
   }
 
-  componentWillReceiveProps(){
-    if (this.props.tabs && this.props.tabs.selectedTab){
-      this.state.selectedTab = this.props.tabs.selectedTab;
-    }
+
+  /**
+   * Store geolocation in state variable so we can pass it
+   * to subcomponents (map and report problem screen). The 
+   * lat/lng are passed down in props and auto-updated.
+   */
+  trackLocation = () => {
+      navigator.geolocation.getCurrentPosition(
+        (position) => {
+          var lat = position.coords.latitude;
+          var lng = position.coords.longitude;
+          this.setState({'currLat':lat, 'currLng':lng});
+        },
+        (error) => console.log(error.message),
+        {enableHighAccuracy: true, timeout: 20000, maximumAge: 1000}
+      );
+      this.watchID = navigator.geolocation.watchPosition((position) => {
+        var lat = position.coords.latitude;
+        var lng = position.coords.longitude;
+        this.setState({'currLat':lat, 'currLng':lng});
+      });
+  }
+
+  componentDidMount(){
+    this.trackLocation();
+  }
+
+  /**
+   *  Triggered via callback from report problem screen
+   */
+  switchTab = (tab) => {
+      this.setState({'selectedTab': tab});
   }
 
   render() {
+
+    var props = {'currLat':this.state.currLat,'currLng':this.state.currLng};
+
     console.log('Rerender Menu');
     return (
-    <View style={styles.container}>
       <View style={styles.container}>
         <TabBarIOS style={styles.tabBar}>
           <Icon.TabBarItem style={styles.container}
@@ -46,11 +76,8 @@ export default class TrailMenu extends Component {
                 return Navigator.SceneConfigs.PushFromRight;
               }}
               renderScene={(route, navigator) => {
-                console.log('render tab loc');
                return (
-                  <View  style={styles.container}>
-                    <TrailMap style={styles.container} />
-                  </View>
+                    <TrailMap {...props} style={styles.container} />
                 );
             }} />
           </Icon.TabBarItem>
@@ -69,9 +96,7 @@ export default class TrailMenu extends Component {
             }}
             renderScene={(route, navigator) => {
                return (
-                 <View  style={styles.container}>
-                  <ReportProblem  style={styles.container}/>
-                 </View>
+                  <ReportProblem {...props} switchTab={this.switchTab} style={styles.container}/>
                 );
           }} />
           </Icon.TabBarItem>
@@ -84,7 +109,7 @@ export default class TrailMenu extends Component {
               this.setState({'selectedTab': 'addsite'});
             }}>
 
-            <View style={styles.container}/>
+          <View style={styles.container}/>
           </Icon.TabBarItem>
           <Icon.TabBarItem style={styles.container}
             title="Add Note"
@@ -97,8 +122,7 @@ export default class TrailMenu extends Component {
             <View style={styles.container}/>
           </Icon.TabBarItem>
         </TabBarIOS>
-      </View>
-   </View>
+      </View> 
     );
   }
 }

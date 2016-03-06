@@ -18,7 +18,9 @@ export default class TrailMap extends Component {
   }
 
   componentWillReceiveProps(){
-   // TODO: only pull back annotations in a region for performance
+      // Focus on current location on initial load
+      this.setState({'lat': this.props.currLat});
+      this.setState({'lng': this.props.currLng});
   }
 
   componentWillMount() {
@@ -28,7 +30,7 @@ export default class TrailMap extends Component {
 
   render() {
    console.log('Rerender map page');
-   console.log(this.props);
+    
     const { trails, isFetching, isSaving } = this.props.trails;
 
     // Render a default empty map if we are loading
@@ -49,41 +51,15 @@ export default class TrailMap extends Component {
       lineWidth: 3
     };
 
-    var lat;
-    var lng;
-
-    // If we take a photo, refresh from DB, then pan to where the
-    // pin is located
-    if (this.props.map && this.props.map.panToLat ){
-       lat = this.props.map.panToLat;
-       lng = this.props.map.panToLng;
-       console.log('Will pan to lat/lng ' + lat + ',' + lng);
-    }
-    // If there's an annotation, then pan to the first location
-    else if (this.props.annotations && this.props.annotations.length > 0){
-      console.log(this.props.annotations);
-      lat = this.props.annotations[0].lat;
-      lng = this.props.annotations[0].lng;
-      console.log('Will use lat/lng of first annotation ' + lat + ',' + lng);
-    }
-    // Otherwise pan to the trail
-    else  if (trails.length > 0) {
-      console.log('hit else 2');
-      lat = trails[0].latitude;
-      lng =  trails[0].longitude;
-       console.log('Will use lat/lng of first trail ' + lat + ',' + lng);
-    }
-
     // outer view needed since tabview requires single child
     return (
-      <View style={styles.container}>
          <View style={styles.container}>
           <MapView
             ref="map"
             style={styles.container}
             region={{
-              latitude: lat,
-              longitude: lng,
+              latitude: this.state.lat,
+              longitude: this.state.lng,
               latitudeDelta: .01,
               longitudeDelta: .01
             }}
@@ -91,7 +67,6 @@ export default class TrailMap extends Component {
             annotations={this.buildAnnotationsFromDataModel()}
             />
           </View>
-      </View>
     );
   }
 
