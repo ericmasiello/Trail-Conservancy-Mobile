@@ -1,26 +1,26 @@
 'use strict';
-import { REQUEST_ANNOTATIONS, RECEIVE_ANNOTATIONS, SEND_ANNOTATION, SEND_ANNOTATION_REPLY } from '../actions/types';
+import { REQUEST_PHOTO, RECEIVE_PHOTO, SEND_PHOTO, SEND_PHOTO_REPLY } from '../actions/types';
 
 export default (state = {
-  annotations: [],
+  photo: [],
   isFetching: false,
   isSaving: false
 }, action = {}) => {
 
   switch (action.type) {
-    case REQUEST_ANNOTATIONS:
+    case REQUEST_PHOTO:
       return {...state, isFetching: true};
-    case RECEIVE_ANNOTATIONS:
+    case RECEIVE_PHOTO:
       return {
         isFetching: false,
-        annotations: action.payload
+        photo: action.payload
       };
-    case SEND_ANNOTATION:
+    case SEND_PHOTO:
       return {...state, isSaving: true};
-    case SEND_ANNOTATION_REPLY:
+    case SEND_PHOTO_REPLY:
       return {
         isSaving: false,
-        annotations: action.payload
+        photo: action.payload
       };
   }
 
