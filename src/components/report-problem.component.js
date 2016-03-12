@@ -2,24 +2,14 @@
 
 import React, {
   Component,
-  View,
-  StyleSheet,
-  TouchableHighlight,
-  Text
+  View
 } from 'react-native';
-
-import s from './report-problem.style';
-
 import GeoHash from 'ngeohash';
-
-const styles = StyleSheet.create(s);
-
-var Camera = require('react-native-camera');
-
-
+import Camera  from 'react-native-camera';
+import Button from './button';
+import layout from '../styles/layout';
 
 export default class ReportProblem extends Component {
-
 
   constructor(props) {
     super(props);
@@ -33,7 +23,6 @@ export default class ReportProblem extends Component {
    */
   capturePhoto = () => {
 
-
     var self = this;
 
     this.cam.capture({
@@ -41,11 +30,9 @@ export default class ReportProblem extends Component {
         location: this.props.location
       },
       target: Camera.constants.CaptureTarget.disk,
-    },
-    function(err, filePath) {
+    }, (err, filePath) => {
 
       const geoHash = GeoHash.encode(self.props.userLocation.lat, self.props.userLocation.lng, 20);
-
       self.props.saveAnnotation(geoHash, {'lat': self.props.userLocation.lat, 'lng': self.props.userLocation.lng});
 
       navigator.geolocation.getCurrentPosition(
@@ -53,32 +40,22 @@ export default class ReportProblem extends Component {
           self.props.updateUserLocation(position.coords.latitude,position.coords.longitude);
         }
       );
-
       self.props.savePhoto(geoHash, filePath);
-
       self.props.fetchAnnotations();
-
       self.props.switchTab('location');
-
     });
   }
 
   render() {
     return (
-       <View style={styles.container}>
+       <View style={layout.container}>
           <Camera
                 ref={(c) => this.cam = c}
                 type='cameraType: Camera.constants.Type.back'
-                style={styles.container}
+                style={layout.container}
                 aspect={Camera.constants.Aspect.Fill}
           />
-          <View style={[{flex:.2}]}>
-            <TouchableHighlight style={{flex:.1, backgroundColor: 'blue'}} onPress={this.capturePhoto}>
-              <View style={{flexDirection: 'column', }}>
-                  <Text style={{textAlign:'center', color: 'white', fontSize:22, marginTop:10}}>Take Picture</Text>
-              </View>
-            </TouchableHighlight>
-          </View>
+          <Button onPress={this.capturePhoto}>Snap a Photo</Button>
       </View>
     );
  }

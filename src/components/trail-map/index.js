@@ -7,11 +7,12 @@ import React, {
   MapView,
   Image,
 } from 'react-native';
-import s from './trail-map.style';
-const styles = StyleSheet.create(s);
+
+import config from '../../styles/config';
+import layout from '../../styles/layout';
+import styles from './styles';
 
 export default class TrailMap extends Component {
-
 
   constructor(props) {
     super(props);
@@ -23,43 +24,34 @@ export default class TrailMap extends Component {
   }
 
   render() {
-
     const { trails, isFetching, isSaving } = this.props.trails;
 
     // Render a default empty map if we are loading
     if ( trails.length === 0 || isFetching ){
 
       console.log('trails are empty', trails, isFetching);
-      return (
-      <View style={styles.container}>
-        <View style={styles.container}>
-          <MapView style={styles.container}/>
-        </View>
-      </View>
-      );
+      return <MapView style={layout.container}/>;
     }
     const overlays = {
       coordinates: trails,
-      strokeColor: '#f007',
-      lineWidth: 3
+      strokeColor: config.overlays.strokeColor,
+      lineWidth: config.overlays.lineWidth
     };
 
     // outer view needed since tabview requires single child
     return (
-         <View style={styles.container}>
-          <MapView
-            ref="map"
-            style={styles.container}
-            region={{
-              latitude: this.props.userLocation.lat,
-              longitude: this.props.userLocation.lng,
-              latitudeDelta: .01,
-              longitudeDelta: .01
-            }}
-            overlays={[overlays]}
-            annotations={this.buildAnnotationsFromDataModel()}
-            />
-          </View>
+      <MapView
+        ref="map"
+        style={layout.container}
+        region={{
+          latitude: this.props.userLocation.lat,
+          longitude: this.props.userLocation.lng,
+          latitudeDelta: .01,
+          longitudeDelta: .01
+        }}
+        overlays={[overlays]}
+        annotations={this.buildAnnotationsFromDataModel()}
+      />
     );
   }
 
@@ -79,7 +71,7 @@ export default class TrailMap extends Component {
         title: 'You Are Here',
         subtitle: 'Subtitle',
         detailCalloutView: (
-          <View style={styles.container}>
+          <View style={layout.container}>
             <Image
               source={{uri:photo}}
               style={styles.annotation}
