@@ -1,5 +1,7 @@
-export const brandColor = '#246dd5';
+export const brandColor = '#3c7088';
 export const buttonTypeColor = '#ffffff';
+export const buttonBGColor = brandColor;
+export const buttonBGActiveColor = '#45809b';
 export const baseTypeColor = '#363636';
 export const baseTypeSize = 16;
 export const h1TypeSize = 32;

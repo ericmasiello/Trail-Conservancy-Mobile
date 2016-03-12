@@ -6,14 +6,10 @@ import React, {
 } from 'react-native';
 import GeoHash from 'ngeohash';
 import Camera  from 'react-native-camera';
-import Button from './button';
+import { Button } from './button';
 import layout from '../styles/layout';
 
 export default class ReportProblem extends Component {
-
-  constructor(props) {
-    super(props);
-  }
 
   /**
    * Capture a photo with the camera, add in the geolocation, save to disk, send to firebase
