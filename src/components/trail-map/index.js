@@ -8,7 +8,7 @@ import React, {
   Image,
 } from 'react-native';
 
-import config from '../../styles/config';
+import { overlayStrokeColor, overlayLineWidth } from '../../styles/config';
 import layout from '../../styles/layout';
 import styles from './styles';
 
@@ -34,8 +34,8 @@ export default class TrailMap extends Component {
     }
     const overlays = {
       coordinates: trails,
-      strokeColor: config.overlays.strokeColor,
-      lineWidth: config.overlays.lineWidth
+      strokeColor: overlayStrokeColor,
+      lineWidth: overlayLineWidth
     };
 
     // outer view needed since tabview requires single child

@@ -1,6 +1,5 @@
 'use strict';
 import { StyleSheet } from 'react-native';
-import config from '../../styles/config';
 
 export default StyleSheet.create({
   annotation: {

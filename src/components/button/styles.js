@@ -1,15 +1,15 @@
 import { StyleSheet } from 'react-native';
-import styleConfig from '../../styles/config';
+import { brandColor, buttonTypeColor, h4TypeSize } from '../../styles/config';
 
 export default StyleSheet.create({
   baseContainer: {
     height: 40,
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: styleConfig.colors.brandColor,
+    backgroundColor: brandColor,
   },
   baseType: {
-    color: styleConfig.colors.buttonType,
-    fontSize: styleConfig.typopgraphy.h4
+    color: buttonTypeColor,
+    fontSize: h4TypeSize
   }
 });

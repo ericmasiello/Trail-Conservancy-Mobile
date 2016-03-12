@@ -1,11 +1,11 @@
 import { StyleSheet } from 'react-native';
-import styleConfig from '../../styles/config';
+import { tabHeight } from '../../styles/config';
 
 export default StyleSheet.create({
   tabBarContainer: {
-    height: 49
+    height: tabHeight
   },
   tabBarItem: {
-    marginBottom: 49
+    marginBottom: tabHeight
   }
 });
