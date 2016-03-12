@@ -8,4 +8,4 @@ export const h3TypeSize = 24;
 export const h4TypeSize = 20;
 export const overlayStrokeColor = '#f007';
 export const overlayLineWidth = 3;
-export const tabHeight = 50;
+export const tabHeight = 49;
