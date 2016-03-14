@@ -6,7 +6,7 @@ import React, {
   StyleSheet,
 } from 'react-native';
 import FBLogin from 'react-native-facebook-login';
-import { layout } from '../styles/layout.js';
+import { layout } from '../../styles/layout.js';
 
 export default class LoginPage extends Component {
 

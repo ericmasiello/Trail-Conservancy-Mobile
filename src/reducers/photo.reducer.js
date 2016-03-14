@@ -1,5 +1,5 @@
 'use strict';
-import { REQUEST_PHOTO, RECEIVE_PHOTO, SEND_PHOTO, SEND_PHOTO_REPLY } from '../actions/types';
+import { REQUEST_PHOTO, RECEIVE_PHOTO, SEND_PHOTO, SEND_PHOTO_REPLY,CACHE_LAST_SAVED_PHOTO } from '../actions/types';
 
 export default (state = {
   photo: [],
@@ -22,7 +22,8 @@ export default (state = {
         isSaving: false,
         photo: action.payload
       };
+    case CACHE_LAST_SAVED_PHOTO:
+      return {lastSavedPhoto: action.payload};
   }
-
   return state;
 };

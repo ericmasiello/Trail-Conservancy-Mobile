@@ -22,7 +22,6 @@ export default class ReportProblem extends Component {
    */
   capturePhoto = () => {
 
-    var self = this;
 
     this.cam.capture({
       metadata: {
@@ -31,20 +30,21 @@ export default class ReportProblem extends Component {
       target: Camera.constants.CaptureTarget.disk,
     }, (err, filePath) => {
 
-      const geoHash = GeoHash.encode(self.props.userLocation.lat, self.props.userLocation.lng, 20);
-      self.props.saveAnnotation(geoHash, {'lat': self.props.userLocation.lat, 'lng': self.props.userLocation.lng});
+      const geoHash = GeoHash.encode(this.props.userLocation.lat, this.props.userLocation.lng, 20);
 
       navigator.geolocation.getCurrentPosition(
         (position) => {
-          self.props.updateUserLocation(position.coords.latitude,position.coords.longitude);
+          this.props.updateUserLocationActionCreator(position.coords.latitude,position.coords.longitude);
         }
       );
-      self.props.savePhoto(geoHash, filePath);
-      self.props.fetchAnnotations();
-      this.props.navigator.push(
-        {name: 'REPORT_PROBLEM_ISSUE_TYPE',
-          'photoGeoHash':geoHash
-        });
+
+      this.props.saveAnnotationActionCreator(geoHash, {'lat': this.props.userLocation.lat, 'lng': this.props.userLocation.lng});
+
+      this.props.savePhotoActionCreator(geoHash, filePath);
+
+      this.props.fetchAnnotationsActionCreator();
+
+      this.props.navigator.push({name: 'REPORT_PROBLEM_ISSUE_TYPE'});
     });
   }
 
@@ -69,11 +69,4 @@ export default class ReportProblem extends Component {
       </View>
     );
  }
-  getAnnotations = (region) => {
-    return [{
-      longitude: region.longitude,
-      latitude: region.latitude,
-      title: 'You Are Here'
-    }];
-  };
 }

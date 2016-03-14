@@ -1,7 +1,7 @@
 'use strict';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { TrailMenu } from '../components/trail-menu/';
+import { TrailMenu } from './';
 
 const mapStateToProps = ({annotations, trails }) => {
   return { annotations, trails};

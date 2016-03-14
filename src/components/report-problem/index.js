@@ -1,5 +1,3 @@
 'use strict';
-import ReportProblem from './report-problem.component';
+import ReportProblem from './report-problem.container';
 export { ReportProblem };
-import ReportProblemIssueType from './report-problem-issue-type.component';
-export { ReportProblemIssueType };

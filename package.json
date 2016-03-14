@@ -22,5 +22,8 @@
     "redux-thunk": "^1.0.3",
     "x2js": "^2.0.0",
     "xmldom": "^0.1.21"
+  },
+  "devDependencies": {
+    "remote-redux-devtools": "^0.1.5"
   }
 }

@@ -2,10 +2,10 @@
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import ReportProblem from './report-problem.component';
-import { saveAnnotation } from '../../actions/trail-annotations.action-creator';
-import { savePhoto } from '../../actions/photo.action-creator';
-import { fetchAnnotations } from '../../actions/trail-annotations.action-creator';
-import { updateUserLocation } from '../../actions/user-location.action-creator';
+import { saveAnnotationActionCreator } from '../../actions/trail-annotations.action-creator';
+import { savePhotoActionCreator } from '../../actions/photo.action-creator';
+import { fetchAnnotationsActionCreator } from '../../actions/trail-annotations.action-creator';
+import { updateUserLocationActionCreator } from '../../actions/user-location.action-creator';
 
 const mapStateToProps = ({userLocation}) => {
   return { userLocation };
@@ -13,10 +13,10 @@ const mapStateToProps = ({userLocation}) => {
 
 const mapDispatchToProps = (dispatch) => {
   return bindActionCreators({
-    saveAnnotation,
-    savePhoto,
-    fetchAnnotations,
-    updateUserLocation
+    saveAnnotationActionCreator,
+    savePhotoActionCreator,
+    fetchAnnotationsActionCreator,
+    updateUserLocationActionCreator
   }, dispatch);
 };
 

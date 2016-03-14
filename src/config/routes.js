@@ -1,10 +1,10 @@
 'use strict';
 import { SplashPage } from '../components/splash-page';
-import LoginPage from '../containers/login.container';
-import TrailMap from '../containers/trail-map.container';
+import LoginPage from '../components/login/login.container';
+import TrailMap from '../components/trail-map/trail-map.container';
 import ReportProblem from '../components/report-problem/report-problem.container';
-import ReportProblemIssueType from '../components/report-problem/report-problem-issue-type.container';
-import TrailMenu from '../containers/trail-menu.container';
+import ReportProblemIssueType from '../components/report-problem-issue-type/report-problem-issue-type.container';
+import TrailMenu from '../components/trail-menu/trail-menu.container';
 
 
 export default {

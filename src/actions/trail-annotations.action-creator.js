@@ -1,6 +1,6 @@
 'use strict';
-import { REQUEST_ANNOTATIONS, RECEIVE_ANNOTATIONS, SEND_ANNOTATION, SEND_ANNOTATION_REPLY } from './types';
-import dataModel from '../utilities/data-model';
+import { REQUEST_ANNOTATIONS, RECEIVE_ANNOTATIONS, SEND_ANNOTATION, CACHE_LAST_ANNOTATION } from './types';
+import {fetchMapAnnotations,saveAnnotation} from '../utilities/data-model';
 
 function requestAnnotations() {
   return {
@@ -22,28 +22,33 @@ function sendAnnotation(payload) {
   };
 }
 
-function sendAnnotationReply(payload) {
+
+function cacheLastAnnotation(payload) {
   return {
-    type: SEND_ANNOTATION_REPLY,
+    type: CACHE_LAST_ANNOTATION,
     payload
   };
 }
 
-export function fetchAnnotations() {
+function fetchAnnotationsActionCreator() {
   console.log('fetchAnnotations');
   return (dispatch) => {
     dispatch(requestAnnotations());
-    dataModel.fetchMapAnnotations().then((response)=>{
+    fetchMapAnnotations().then((response)=>{
       dispatch(receiveAnnotations(response));
     });
   };
 }
 
-export function saveAnnotation(geoHash, annotation){
+function saveAnnotationActionCreator(geoHash, annotation){
    return (dispatch) => {
     dispatch(sendAnnotation(geoHash, annotation));
-    dataModel.saveAnnotation(geoHash, annotation).then((response)=>{
-      dispatch(sendAnnotationReply(response));
-    });
+    saveAnnotation(geoHash, annotation)
+      .then((response)=>{
+        dispatch(cacheLastAnnotation(response));
+      })
+      .catch((err) => console.log(err));
   };
 }
+
+export {saveAnnotationActionCreator,fetchAnnotationsActionCreator};

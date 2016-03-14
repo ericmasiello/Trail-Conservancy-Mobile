@@ -8,8 +8,8 @@ import React, {
 import TimerMixin from 'react-timer-mixin';
 import reactMixin from 'react-mixin';
 
-import TrailMap from '../../containers/trail-map.container';
-import GetUserLocation from '../../containers/get-user-location.container';
+import TrailMap from '../trail-map/trail-map.container';
+import GetUserLocation from '../get-user-location/get-user-location.container';
 
 import layout from '../../styles/layout';
 

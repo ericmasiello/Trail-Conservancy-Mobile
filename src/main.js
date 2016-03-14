@@ -7,13 +7,26 @@ import React, {
   Navigator,
 } from 'react-native';
 import { Provider } from 'react-redux';
-import { createStore, applyMiddleware } from 'redux';
+import { createStore, applyMiddleware, compose } from 'redux';
 import reducers from './reducers/';
 import ROUTES from './config/routes';
 import { loginActionCreator } from './actions/login.action-creator';
 import thunkMiddleware from 'redux-thunk';
+import devTools from 'remote-redux-devtools';
 
-const store = applyMiddleware(thunkMiddleware)(createStore)(reducers);
+
+// Hook in redux native devtools to the store.  This allows use to debug redux store using chrome plugin.
+// This is worth installing, since it allows time travel debugging etc
+// see https://github.com/zalmoxisus/remote-redux-devtools
+// https://github.com/reactjs/redux/blob/5a1b3e045f624fc3e96701c4e9b7193a49accfdd/docs/api/compose.md
+
+const store = createStore(
+  reducers,
+  compose(
+    applyMiddleware(thunkMiddleware),
+    devTools()
+  )
+);
 
 export default class Main extends Component {
 
@@ -23,6 +36,9 @@ export default class Main extends Component {
 
   renderScene(route, navigator) {
     console.log('Route to ' + route.name);
+
+    //debug
+    console.log(store.getState());
 
     var { user } = store.getState();
     var props = {

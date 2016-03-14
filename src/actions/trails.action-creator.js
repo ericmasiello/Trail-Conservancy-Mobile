@@ -1,6 +1,7 @@
 'use strict';
 import { REQUEST_TRAILS, RECEIVE_TRAILS } from './types';
-import dataModel from '../utilities/data-model';
+import {fetchMapTrail} from '../utilities/data-model';
+
 
 function requestTrails() {
   return {
@@ -15,13 +16,15 @@ function receiveTrails(payload) {
   };
 }
 
-export function fetchTrails() {
+function fetchTrailsActionCreator() {
 
   return (dispatch) => {
     dispatch(requestTrails());
 
-    dataModel.fetchMapTrail().then((response)=>{
+    fetchMapTrail().then((response)=>{
       dispatch(receiveTrails(response));
     });
   };
 }
+
+export {fetchTrailsActionCreator};

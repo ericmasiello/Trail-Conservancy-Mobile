@@ -10,16 +10,22 @@ import React, {
 import styles from './styles';
 
 // transparentWrapper is needed to make touchable highlight
-export default class NavHeader extends Component {
+export default class Photo extends Component {
 
   constructor(props) {
     super(props);
   }
+  componentWillMount() {
+    this.props.fetchPhotoActionCreator(this.props.geoHash);
+  }
+
 
   cancel = () => {
      this.props.navigator.popToTop();
   }
   render() {
+
+    console.log(this.props);
     // Note: extra text element below allows space-between layout to work right
     // see https://css-tricks.com/snippets/css/a-guide-to-flexbox/
       return (
@@ -27,7 +33,7 @@ export default class NavHeader extends Component {
         <Text/>
             <Text style={styles.right}>Snap the problem</Text>
             <TouchableHighlight underlayColor="transparent" onPress={this.cancel}>
-              <Image  
+              <Image
                 source={require('../../images/delete-header-icon.png')}
               />
             </TouchableHighlight>

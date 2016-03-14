@@ -21,8 +21,8 @@ export default class TrailMap extends Component {
   }
 
   componentWillMount() {
-    this.props.fetchAnnotations();
-    this.props.fetchTrails();
+    this.props.fetchAnnotationsActionCreator();
+    this.props.fetchTrailsActionCreator();
   }
 
   render() {
