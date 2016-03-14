@@ -90,7 +90,7 @@ export default {
         };
         RNFS.readFile(filePathToSave, 'base64').then((fileData) => {
           var photo = {};
-          photo[attrName] = fileData;
+          photo[attrName] = 'data:image/png;base64,' + fileData;
           photo.geoHash = geoHashToSave;
           firebase.update(photo,onComplete);
         })

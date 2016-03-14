@@ -1,3 +1,4 @@
+'use strict';
 import { StyleSheet } from 'react-native';
 import { baseTypeColor, h1TypeSize } from '../../styles/config';
 

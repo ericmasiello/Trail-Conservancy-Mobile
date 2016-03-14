@@ -8,8 +8,9 @@ import React, {
 } from 'react-native';
 import GeoHash from 'ngeohash';
 import Camera  from 'react-native-camera';
-import { Button } from './button';
-import layout from '../styles/layout';
+import layout from '../../styles/layout';
+import styles from './styles';
+import { NavHeader } from '../nav-header/';
 
 export default class ReportProblem extends Component {
 
@@ -40,29 +41,30 @@ export default class ReportProblem extends Component {
       );
       self.props.savePhoto(geoHash, filePath);
       self.props.fetchAnnotations();
-      self.props.switchTab('location');
+      this.props.navigator.push(
+        {name: 'REPORT_PROBLEM_ISSUE_TYPE',
+          'photoGeoHash':geoHash
+        });
     });
   }
 
   render() {
     return (
        <View style={layout.container}>
+        <NavHeader {...this.props}/>
           <Camera
                 ref={(c) => this.cam = c}
                 type='cameraType: Camera.constants.Type.back'
                 style={layout.container}
                 aspect={Camera.constants.Aspect.Fill}
           />
-          <Button onPress={this.capturePhoto}>Snap a Photo</Button>
-
-        <View style={styles.transparentWrapper}>
-            <TouchableHighlight underlayColor="transparent" onPress={this.capturePhoto}>
-              <Image 
-                source={require('../../images/bullseye.png')}
-              />
-            </TouchableHighlight>
-        </View>
-
+          <View style={styles.transparentWrapper}>
+              <TouchableHighlight underlayColor="transparent" onPress={this.capturePhoto}>
+                <Image
+                  source={require('../../images/bullseye.png')}
+                />
+              </TouchableHighlight>
+          </View>
 
       </View>
     );
