@@ -6,8 +6,7 @@ import React, {
   StyleSheet,
 } from 'react-native';
 import FBLogin from 'react-native-facebook-login';
-import s from './login.style';
-const styles = StyleSheet.create(s);
+import { layout } from '../styles/layout.js';
 
 export default class LoginPage extends Component {
 
@@ -50,10 +49,10 @@ export default class LoginPage extends Component {
   }
 
   render() {
+
     return (
-      <View style={styles.container}>
-        <FBLogin style={styles.fbLogin}
-                 permissions={['email','user_friends']}
+      <View style={layout.container}>
+        <FBLogin permissions={['email','user_friends']}
                  onLogin={ this.onLogin }
                  onLogout={ this.onLogout }
                  onLoginFound={this.onLoginFound }
