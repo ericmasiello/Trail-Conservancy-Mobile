@@ -12,6 +12,9 @@ import reducers from './reducers/';
 import ROUTES from './config/routes';
 import { loginActionCreator } from './actions/login.action-creator';
 import thunkMiddleware from 'redux-thunk';
+import userStorageMiddleware from './middleware/user-storage.middleware';
+import { USER_LOGGED_IN, USER_LOGGED_OUT } from './actions/types';
+
 import devTools from 'remote-redux-devtools';
 
 
@@ -23,7 +26,7 @@ import devTools from 'remote-redux-devtools';
 const store = createStore(
   reducers,
   compose(
-    applyMiddleware(thunkMiddleware),
+    applyMiddleware(userStorageMiddleware('user', USER_LOGGED_IN, USER_LOGGED_OUT),thunkMiddleware),
     devTools()
   )
 );
@@ -36,9 +39,6 @@ export default class Main extends Component {
 
   renderScene(route, navigator) {
     console.log('Route to ' + route.name);
-
-    //debug
-    console.log(store.getState());
 
     var { user } = store.getState();
     var props = {
