@@ -12,8 +12,10 @@ import reducers from './reducers/';
 import ROUTES from './config/routes';
 import { loginActionCreator } from './actions/login.action-creator';
 import thunkMiddleware from 'redux-thunk';
+import userStorageMiddleware from './middleware/user-storage.middleware';
+import { USER_LOGGED_IN, USER_LOGGED_OUT } from './actions/types';
 
-const store = applyMiddleware(thunkMiddleware)(createStore)(reducers);
+const store = applyMiddleware(userStorageMiddleware('user', USER_LOGGED_IN, USER_LOGGED_OUT),thunkMiddleware)(createStore)(reducers);
 
 export default class Main extends Component {
 
