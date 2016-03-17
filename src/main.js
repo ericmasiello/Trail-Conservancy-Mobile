@@ -15,6 +15,7 @@ import thunkMiddleware from 'redux-thunk';
 import userStorageMiddleware from './middleware/user-storage.middleware';
 import { USER_LOGGED_IN, USER_LOGGED_OUT } from './actions/types';
 
+ 
 import devTools from 'remote-redux-devtools';
 
 
@@ -30,6 +31,7 @@ const store = createStore(
     devTools()
   )
 );
+
 
 export default class Main extends Component {
 
