@@ -2,12 +2,15 @@
 
 import React, {
   Component,
-  View
+  View,
+  TouchableHighlight,
+  Image
 } from 'react-native';
 import GeoHash from 'ngeohash';
 import Camera  from 'react-native-camera';
-import { Button } from './button';
-import layout from '../styles/layout';
+import layout from '../../styles/layout';
+import styles from './styles';
+import { NavHeader } from '../nav-header/';
 
 export default class ReportProblem extends Component {
 
@@ -19,7 +22,6 @@ export default class ReportProblem extends Component {
    */
   capturePhoto = () => {
 
-    var self = this;
 
     this.cam.capture({
       metadata: {
@@ -28,38 +30,43 @@ export default class ReportProblem extends Component {
       target: Camera.constants.CaptureTarget.disk,
     }, (err, filePath) => {
 
-      const geoHash = GeoHash.encode(self.props.userLocation.lat, self.props.userLocation.lng, 20);
-      self.props.saveAnnotation(geoHash, {'lat': self.props.userLocation.lat, 'lng': self.props.userLocation.lng});
+      const geoHash = GeoHash.encode(this.props.userLocation.lat, this.props.userLocation.lng, 20);
 
       navigator.geolocation.getCurrentPosition(
         (position) => {
-          self.props.updateUserLocation(position.coords.latitude,position.coords.longitude);
+          this.props.updateUserLocationActionCreator(position.coords.latitude,position.coords.longitude);
         }
       );
-      self.props.savePhoto(geoHash, filePath);
-      self.props.fetchAnnotations();
-      self.props.switchTab('location');
+
+      this.props.saveAnnotationActionCreator(geoHash, {'lat': this.props.userLocation.lat, 'lng': this.props.userLocation.lng});
+
+      this.props.savePhotoActionCreator(geoHash, filePath);
+
+      this.props.fetchAnnotationsActionCreator();
+
+      this.props.navigator.push({name: 'REPORT_PROBLEM_ISSUE_TYPE'});
     });
   }
 
   render() {
     return (
        <View style={layout.container}>
+        <NavHeader {...this.props}/>
           <Camera
                 ref={(c) => this.cam = c}
                 type='cameraType: Camera.constants.Type.back'
                 style={layout.container}
                 aspect={Camera.constants.Aspect.Fill}
           />
-          <Button onPress={this.capturePhoto}>Snap a Photo</Button>
+          <View style={styles.transparentWrapper}>
+              <TouchableHighlight underlayColor="transparent" onPress={this.capturePhoto}>
+                <Image
+                  source={require('../../images/bullseye.png')}
+                />
+              </TouchableHighlight>
+          </View>
+
       </View>
     );
  }
-  getAnnotations = (region) => {
-    return [{
-      longitude: region.longitude,
-      latitude: region.latitude,
-      title: 'You Are Here'
-    }];
-  };
 }

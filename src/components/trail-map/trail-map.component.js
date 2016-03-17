@@ -4,23 +4,25 @@ import React, {
   Component,
   View,
   StyleSheet,
-  MapView,
   Image,
 } from 'react-native';
 
 import { overlayStrokeColor, overlayLineWidth } from '../../styles/config';
 import layout from '../../styles/layout';
 import styles from './styles';
+import MapView from 'react-native-maps';
+import { MapIconOverlay } from '../map-icon-overlay/';
 
 export default class TrailMap extends Component {
 
   constructor(props) {
+
     super(props);
   }
 
   componentWillMount() {
-    this.props.fetchAnnotations();
-    this.props.fetchTrails();
+    this.props.fetchAnnotationsActionCreator();
+    this.props.fetchTrailsActionCreator();
   }
 
   render() {
@@ -38,20 +40,31 @@ export default class TrailMap extends Component {
       lineWidth: overlayLineWidth
     };
 
+
     // outer view needed since tabview requires single child
+
     return (
-      <MapView
-        ref="map"
-        style={layout.container}
-        region={{
-          latitude: this.props.userLocation.lat,
-          longitude: this.props.userLocation.lng,
-          latitudeDelta: .01,
-          longitudeDelta: .01
-        }}
-        overlays={[overlays]}
-        annotations={this.buildAnnotationsFromDataModel()}
-      />
+      <View style={layout.container}>
+        <MapView
+          ref="map"
+          style={layout.container}
+          region={{
+            latitude: this.props.userLocation.lat,
+            longitude: this.props.userLocation.lng,
+            latitudeDelta: .01,
+            longitudeDelta: .01
+          }}>
+
+          <MapView.Polyline
+            coordinates={this.props.trails.trails}
+            fillColor="rgba(0, 200, 0, 0.5"
+            strokeColor="rgba(0,0,0,0.5"
+            strokeWidth={2}
+          />
+          {this.buildAnnotationsFromDataModel()}
+        </MapView>
+        <MapIconOverlay {...this.props}/>
+     </View>
     );
   }
 
@@ -62,22 +75,18 @@ export default class TrailMap extends Component {
     }
 
     return this.props.annotations.annotations.map(function(currVal, ind, arr) {
-      // TODO: need to optimize the photo display.  Right now we download all images and annotations.
-      // when there are too many in firebase it crashes the app.
-      var photo = 'data:image/png;base64,' + currVal.photo;
-      return({
-        longitude: currVal.lng,
-        latitude: currVal.lat,
-        title: 'You Are Here',
-        subtitle: 'Subtitle',
-        detailCalloutView: (
-          <View style={layout.container}>
-            <Image
-              source={{uri:photo}}
-              style={styles.annotation}
-              />
-          </View>)
-        });
+      return(
+        <MapView.Marker
+          key={ind}
+          coordinate={{
+            latitude: currVal.lat,
+            longitude: currVal.lng,
+          }}
+          centerOffset={{ x: -42, y: -60 }}
+          anchor={{ x: 0.84, y: 1 }}
+          image={require('../../images/Log-green.png')}
+        />
+      );
     });
 
   };

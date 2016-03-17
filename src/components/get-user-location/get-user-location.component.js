@@ -20,7 +20,7 @@ export default class GetUserLocation extends Component {
       this.watchID = navigator.geolocation.watchPosition((position) => {
         var lat = position.coords.latitude;
         var lng = position.coords.longitude;
-        this.props.updateUserLocation(lat,lng);
+        this.props.updateUserLocationActionCreator(lat,lng);
       },
       (error) => console.log(error.message),
       {enableHighAccuracy: false, timeout: 20000, maximumAge: 1000}

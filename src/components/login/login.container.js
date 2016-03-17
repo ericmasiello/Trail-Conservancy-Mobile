@@ -1,8 +1,8 @@
 'use strict';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import LoginPage from '../components/login.component';
-import { loginActionCreator, logoutActionCreator } from '../actions/login.action-creator';
+import LoginPage from './login.component';
+import { loginActionCreator, logoutActionCreator } from '../../actions/login.action-creator';
 
 const mapStateToProps = ({user}) => {
   return { user };

@@ -1,6 +1,7 @@
 'use strict';
-import { REQUEST_PHOTO, RECEIVE_PHOTO, SEND_PHOTO, SEND_PHOTO_REPLY } from './types';
-import dataModel from '../utilities/data-model';
+import { REQUEST_PHOTO, RECEIVE_PHOTO, SEND_PHOTO, SEND_PHOTO_REPLY,CACHE_LAST_SAVED_PHOTO} from './types';
+import {savePhoto,fetchPhoto } from '../utilities/data-model';
+
 
 function requestPhoto() {
   return {
@@ -29,20 +30,32 @@ function sendPhotoReply(payload) {
   };
 }
 
-export function fetchPhoto() {
+function cacheLastSavedPhoto(payload) {
+  return {
+    type: CACHE_LAST_SAVED_PHOTO,
+    payload
+  };
+}
+
+function fetchPhotoActionCreator(geoHash) {
   return (dispatch) => {
     dispatch(requestPhoto());
-    dataModel.fetchMapPhoto().then((response)=>{
+    fetchPhoto(geoHash).then((response)=>{
       dispatch(receivePhoto(response));
     });
   };
 }
 
-export function savePhoto(geoHash, filePath){
-   return (dispatch) => {
+function savePhotoActionCreator(geoHash, filePath){
+  return (dispatch) => {
     dispatch(sendPhoto(geoHash, filePath));
-    dataModel.savePhoto(geoHash, filePath).then((response)=>{
-      dispatch(sendPhotoReply(response));
-    });
+    savePhoto(geoHash, filePath)
+      .then((response)=>{
+        dispatch(sendPhotoReply(response));
+        dispatch(cacheLastSavedPhoto(response));
+      });
   };
 }
+
+
+export {fetchPhotoActionCreator,savePhotoActionCreator};

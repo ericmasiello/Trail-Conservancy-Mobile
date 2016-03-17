@@ -1,5 +1,5 @@
 'use strict';
-import { REQUEST_ANNOTATIONS, RECEIVE_ANNOTATIONS, SEND_ANNOTATION, SEND_ANNOTATION_REPLY } from '../actions/types';
+import { REQUEST_ANNOTATIONS, RECEIVE_ANNOTATIONS, SEND_ANNOTATION, SEND_ANNOTATION_REPLY, CACHE_LAST_ANNOTATION } from '../actions/types';
 
 export default (state = {
   annotations: [],
@@ -22,6 +22,8 @@ export default (state = {
         isSaving: false,
         annotations: action.payload
       };
+    case CACHE_LAST_ANNOTATION:
+      return {...state,lastSavedAnnotation: action.payload};
   }
 
   return state;
