@@ -3,20 +3,13 @@ import { StyleSheet } from 'react-native';
 
 export default StyleSheet.create({
 
-transparentWrapper: {
-    flex: .12,
-    backgroundColor: 'transparent',
-    flexDirection:'row' ,
-    alignItems:'center',
-    justifyContent:'center',
-    borderTopWidth:1
-},
+ 
 largeimage: {
 	flex:1,
 	borderWidth:1
 },
 midText: {
-	flex:.1,
+	flex:.1	,
 	textAlign:'center'
 },
 iconBarWrapper: {

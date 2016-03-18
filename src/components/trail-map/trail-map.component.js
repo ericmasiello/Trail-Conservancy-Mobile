@@ -85,6 +85,8 @@ export default class TrailMap extends Component {
           centerOffset={{ x: -42, y: -60 }}
           anchor={{ x: 0.84, y: 1 }}
           image={require('../../images/Log-green.png')}
+          title={currVal.issueType}
+          description={currVal.comment}
         />
       );
     });

@@ -11,7 +11,7 @@ export default (state = {
     case REQUEST_ANNOTATIONS:
       return {...state, isFetching: true};
     case RECEIVE_ANNOTATIONS:
-      return {
+      return {...state,
         isFetching: false,
         annotations: action.payload
       };
@@ -19,6 +19,7 @@ export default (state = {
       return {...state, isSaving: true};
     case SEND_ANNOTATION_REPLY:
       return {
+        ...state,
         isSaving: false,
         annotations: action.payload
       };

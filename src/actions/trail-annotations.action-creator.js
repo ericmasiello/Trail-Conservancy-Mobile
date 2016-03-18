@@ -51,4 +51,4 @@ function saveAnnotationActionCreator(geoHash, annotation){
   };
 }
 
-export {saveAnnotationActionCreator,fetchAnnotationsActionCreator};
+export {saveAnnotationActionCreator,fetchAnnotationsActionCreator,cacheLastAnnotation};

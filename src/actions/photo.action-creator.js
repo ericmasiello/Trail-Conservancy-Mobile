@@ -58,4 +58,4 @@ function savePhotoActionCreator(geoHash, filePath){
 }
 
 
-export {fetchPhotoActionCreator,savePhotoActionCreator};
+export {fetchPhotoActionCreator,savePhotoActionCreator,cacheLastSavedPhoto};

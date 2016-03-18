@@ -38,7 +38,7 @@ export default class ReportProblem extends Component {
         }
       );
 
-      this.props.saveAnnotationActionCreator(geoHash, {'lat': this.props.userLocation.lat, 'lng': this.props.userLocation.lng});
+      this.props.saveAnnotationActionCreator(geoHash, {'lat': this.props.userLocation.lat, 'lng': this.props.userLocation.lng, 'geoHash': geoHash});
 
       this.props.savePhotoActionCreator(geoHash, filePath);
 
@@ -59,7 +59,7 @@ export default class ReportProblem extends Component {
                 aspect={Camera.constants.Aspect.Fill}
           />
           <View style={styles.transparentWrapper}>
-              <TouchableHighlight underlayColor="transparent" onPress={this.capturePhoto}>
+              <TouchableHighlight underlayColor="transparent" onPress={()=> this.capturePhoto()}>
                 <Image
                   source={require('../../images/bullseye.png')}
                 />
