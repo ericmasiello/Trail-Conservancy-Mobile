@@ -38,7 +38,7 @@ export default class ReportProblem extends Component {
         }
       );
 
-      this.props.saveAnnotationActionCreator(geoHash, {'lat': this.props.userLocation.lat, 'lng': this.props.userLocation.lng, 'geoHash': geoHash});
+      this.props.saveAnnotationActionCreator(geoHash, {'lat': this.props.userLocation.lat, 'lng': this.props.userLocation.lng, geoHash});
 
       this.props.savePhotoActionCreator(geoHash, filePath);
 

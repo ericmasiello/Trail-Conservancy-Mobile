@@ -1,4 +1,8 @@
+'use strict';
 export const brandColor = '#3c7088';
+export const componentBorderColor = 'black';
+export const componentBackgroundColor = 'white';
+export const componentTransparentBackgroundColor = 'transparent';
 export const buttonTypeColor = '#ffffff';
 export const buttonBGColor = brandColor;
 export const buttonBGActiveColor = '#45809b';

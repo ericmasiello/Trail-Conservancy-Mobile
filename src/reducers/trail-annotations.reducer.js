@@ -9,14 +9,21 @@ export default (state = {
 
   switch (action.type) {
     case REQUEST_ANNOTATIONS:
-      return {...state, isFetching: true};
+      return {
+        ...state,
+        isFetching: true
+      };
     case RECEIVE_ANNOTATIONS:
-      return {...state,
+      return {
+        ...state,
         isFetching: false,
         annotations: action.payload
       };
     case SEND_ANNOTATION:
-      return {...state, isSaving: true};
+      return {
+        ...state,
+        isSaving: true
+      };
     case SEND_ANNOTATION_REPLY:
       return {
         ...state,
@@ -24,7 +31,10 @@ export default (state = {
         annotations: action.payload
       };
     case CACHE_LAST_ANNOTATION:
-      return {...state,lastSavedAnnotation: action.payload};
+      return {
+        ...state,
+        lastSavedAnnotation: action.payload
+      };
   }
 
   return state;

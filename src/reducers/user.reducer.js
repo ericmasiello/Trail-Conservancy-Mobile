@@ -9,6 +9,5 @@ export default (state = null, action = {}) => {
     case USER_LOGGED_OUT:
       return null;
   }
-  
   return state;
 };

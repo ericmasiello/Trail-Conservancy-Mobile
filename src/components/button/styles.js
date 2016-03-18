@@ -1,3 +1,4 @@
+'use strict';
 import { StyleSheet } from 'react-native';
 import { buttonBGColor, buttonTypeColor, h4TypeSize } from '../../styles/config';
 

@@ -8,7 +8,10 @@ export default (state = {
 
   switch (action.type) {
     case REQUEST_TRAILS:
-      return {...state, isFetching: true};
+      return {
+        ...state,
+        isFetching: true
+      };
     case RECEIVE_TRAILS:
       return {
         isFetching: false,
