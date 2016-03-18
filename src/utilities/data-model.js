@@ -44,7 +44,7 @@ function savePhoto(geoHash, filePath) {
         console.log(err.message);
       });
 
-    var large = resizePhoto(filePath, 200, 200, 30)
+    var large = resizePhoto(filePath, 400, 500, 60)
       .then((resizedFilePath) => readPhotoToBase64(resizedFilePath, geoHash))
       .catch((err) => {
         console.log(err.message);

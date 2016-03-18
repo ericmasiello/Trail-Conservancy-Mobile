@@ -51,7 +51,7 @@ export default class ReportProblem extends Component {
   render() {
     return (
        <View style={layout.container}>
-        <NavHeader {...this.props}/>
+        <NavHeader {...this.props}  text="Snap the problem"/>
           <Camera
                 ref={(c) => this.cam = c}
                 type='cameraType: Camera.constants.Type.back'

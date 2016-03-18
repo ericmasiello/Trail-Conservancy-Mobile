@@ -25,7 +25,7 @@ export default class NavHeader extends Component {
       return (
         <View style={styles.wrapper}>
         <Text/>
-            <Text style={styles.right}>Snap the problem</Text>
+            <Text style={styles.right}>{this.props.text}</Text>
             <TouchableHighlight underlayColor="transparent" onPress={this.cancel}>
               <Image  
                 source={require('../../images/delete-header-icon.png')}
